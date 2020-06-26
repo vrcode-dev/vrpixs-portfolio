@@ -1,0 +1,24 @@
+{
+  "name": "vrpixs-portfolio-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vrcode-dev/vrpixs-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage":"https://vrcode-dev.github.io/vrpixs-portfolio",
+  "bugs": {
+    "url": "https://github.com/vrcode-dev/vrpixs-portfolio/issues"
+  },
+  "homepage": "https://github.com/vrcode-dev/vrpixs-portfolio#readme",
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}

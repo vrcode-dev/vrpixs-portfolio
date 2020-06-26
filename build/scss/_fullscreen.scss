@@ -1,0 +1,66 @@
+$text-primary: rgba(255, 255, 255, 0.7);
+$hover-highlight:  rgba(255, 255, 255, 1);
+
+
+
+//****  CSS FOR FULLSCREEN VIEW ****//
+.slider {
+    position: relative;
+    // overflow: visible;
+    height: 100vh;
+    width: 100vw;
+   
+   
+    // opacity: 0;
+
+    .slide_img {
+        position: absolute;
+        top: 0;
+        left: 100;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 0;
+        cursor: auto;
+    
+      }
+    
+    
+    .slide_img.active {
+        opacity: 1;
+        transition: all 0.7s ease-in 0.3s;
+     
+      }
+  }
+
+.buttons button {
+    border: none;
+    background-color: transparent;
+    color: $text-primary;
+    cursor: pointer;
+    border-radius: 50%;
+    // outline: none;
+    font-size: 1.5rem;
+    display: none;
+
+    &:hover {
+        color: $hover-highlight;
+    }
+
+  
+  }
+
+  .buttons button#next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); //offset the off-center pos
+    right: 1rem;
+  }
+  
+  .buttons button#prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem
+  }
+//**** END CSS FOR FULLSCREEN VIEW ****//

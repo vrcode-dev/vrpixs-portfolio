@@ -1,0 +1,69 @@
+$base-size: calc(0.625 * 5rem);
+$ratio-const-length:  6;
+$ratio-const-width: 4; 
+
+.picture_grid_container { // VRPIXS's custom grid layout
+    margin: auto;
+    background-color: black;
+    display:none;
+
+    ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax($base-size,auto));
+        grid-auto-rows: $base-size;
+        grid-auto-flow: dense;
+        gap: 5px;
+
+        li {
+            list-style: none;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                // filter: grayscale(100%) contrast(110%) brightness(1.2);
+                opacity: 100%; //change this to 40%
+            }   
+
+            img:hover {
+                filter: contrast(80%);
+                opacity: 50%;
+                transition: all 1s ease-in-out;
+               
+
+                .expand {
+                    width: 25px;
+                    height: 25px;
+                    background-color: red;
+
+                }
+            }  
+        }
+
+        li:nth-child(n).horizontal {
+    
+            grid-column: span calc(1 * #{$ratio-const-length});
+            grid-row: span calc(1 * #{$ratio-const-width});   
+        } 
+        li:nth-child(1).horizontal,li:nth-child(17).horizontal,li:nth-child(35).horizontal,li:nth-child(62).horizontal{
+            grid-column: span calc(2 * #{$ratio-const-length});
+            grid-row: span calc(2 * #{$ratio-const-width});   
+        } 
+        li:nth-child(36).horizontal,li:nth-child(48).horizontal, li:nth-child(63).horizontal{
+            grid-column: span calc(3 * #{$ratio-const-length});
+            grid-row: span calc(2 * #{$ratio-const-width});   
+        } 
+        
+        
+        li:nth-child(n).vertical {
+            grid-row: span calc(2/3 * #{$ratio-const-length});
+            grid-column: span calc(2/3 * #{$ratio-const-width});   
+        }
+        
+        
+        li:nth-child(7n).vertical {
+            grid-row: span calc(4/3 * #{$ratio-const-length});
+            grid-column: span calc(11/8 * #{$ratio-const-width});   
+        }
+    }      
+}
