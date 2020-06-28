@@ -3,16 +3,25 @@
 
 
 // ** EXECUTION AREA ** //
-let images = document.querySelectorAll("img");
-viewOptions();
+
 
 
 
 window.addEventListener('load', function() {
+    let images = document.querySelectorAll("img");
+
+   
     determineOrientation(images);// add horizontal | vertical class to tags
     addDataSource(images); // add data-src and paths
+
     document.querySelector('.picture_grid_container').style.display = "block"; //unhide from the annoyingthumbnail
     // images.forEach(image => {observer.observe(image);}) //lazyload
+    getOrientation();
+    viewOptions();
+    // window.onresize = function(){ getOrientation(); }
+ 
+   
+  
 
 
  });   
@@ -20,9 +29,7 @@ window.addEventListener('load', function() {
 
 
 
-imgArr = Array.from(document.querySelectorAll('.slider li'));
-console.log(imgArr);
-imgArr.filter
+
 
 
 
@@ -96,13 +103,90 @@ function viewOptions(){//make option clicked selected
     const grid = document.querySelector('#grid_view');
     const fullscreen = document.querySelector('#fullscreen_view');  
     const slides = document.querySelectorAll('.slider li');
+    const slider = document.querySelector(".slider");
+    // console.log(slide);
+  
     // const slider = 
     const slideButtons = document.querySelectorAll('.buttons button')
     
 
-    viewOpt[0].classList.add(active); //1st option as a default
-    slides[0].classList.add('active'); //make the first pix active by default  
-    slides[0].classList.add('active');
+    //1st option as a default
+    // slides[0].classList.add('active'); //make the first pix active by default  
+    // slides[0].classList.add('active');
+
+
+    if (getOrientation() == "Landscape") viewOpt[0].classList.add(active); 
+    else  viewOpt[1].classList.add(active);
+    screenModeTest();
+
+    function screenModeTest() {        
+        
+        if (fullscreen.classList.contains(active)) {
+
+        slideButtons.forEach( (e) => { //display next/prev buttons
+            e.style.display = 'block';
+        })  
+
+        document.querySelector('.slider').style.overflow = 'hidden';
+
+        if(getOrientation() == "Landscape" ){
+
+            addSlides(slides);
+        
+            // console.log(slider);
+            filterHorizontalImages(slides).forEach (e => {
+                slider.appendChild(e); 
+                // console.log(e);
+            });
+            
+
+            filterVerticalImages(slides).forEach (e => {
+                slider.removeChild(e); 
+                console.log(e);
+            });
+            console.log(slides);
+        }
+        else { 
+            addSlides(slides);
+
+            console.log("appeding vertical imgs for slideshow")    
+            filterVerticalImages(slides).forEach (e => {
+                slider.appendChild(e); 
+                // console.log(e);
+            }); 
+
+            slides[1].classList.add('active');// put active in vertical pixs so it shows when in portraits, hard coding as vert img is 2nd in the list
+            
+            // console.log(slides);
+            filterHorizontalImages(slides).forEach (e => { //for some reason this remove everything. need fixing
+                slider.removeChild(e); 
+                    // console.log(e);
+                });  
+                // slider.firstChild.classList.add('active'); //make the first pix active    
+        }
+
+        
+
+
+        auto = true; // auto scroll flag, globally declared
+        if (auto) {
+            // Run next slide at interval time
+            slideInterval = setInterval(nextSlide, intervalTime);
+        }
+
+    }    
+    else { //not in fullscreen mode
+        hideSlides(slides);
+        defaultView();
+
+     
+     
+
+        auto = false; //turn off auto scroll when not in fullscreen
+        clearInterval(slideInterval);// ^^
+    };
+    }
+   
 
    
 
@@ -112,39 +196,72 @@ function viewOptions(){//make option clicked selected
         current[0].className = current[0].className.replace(active, "");
         this.className +=  " " + active;   
 
-        if (fullscreen.classList.contains(active)){
-            addSlides(slides)
+        screenModeTest();
 
-        //    slides.classList.contains("horizontal slide_img").style.display = "hidden";
-            slides.forEach( (e) => {
-                if (e.classList.contains("vertical")) {
-                    e.style.display=('none');
-                    // e.remove()
-                    console.log("removed");
-                    // e.classList.remove("slide_img");
-                }
-            })      
+        // if (fullscreen.classList.contains(active)) {
 
-                slideButtons.forEach( (e) => {
-                e.style.display = 'block';
-            })  
+        //     slideButtons.forEach( (e) => { //display next/prev buttons
+        //         e.style.display = 'block';
+        //     })  
+    
+        //     document.querySelector('.slider').style.overflow = 'hidden';
 
-            document.querySelector('.slider').style.overflow = 'hidden';
+        //     if(getOrientation() == "Landscape" ){
 
-            auto = false; // auto scroll flag, globally declared
-            if (auto) {
-                // Run next slide at interval time
-                slideInterval = setInterval(nextSlide, intervalTime);
-            }
+        //         addSlides(slides);
+            
+        //         // console.log(slider);
+        //         filterHorizontalImages(slides).forEach (e => {
+        //             slider.appendChild(e); 
+        //             // console.log(e);
+        //         });
+                
+
+        //         filterVerticalImages(slides).forEach (e => {
+        //             slider.removeChild(e); 
+        //             console.log(e);
+        //         });
+        //         console.log(slides);
+        //     }
+        //     else { 
+        //         addSlides(slides);
+
+        //         console.log("appeding vertical imgs for slideshow")    
+        //         filterVerticalImages(slides).forEach (e => {
+        //             slider.appendChild(e); 
+        //             // console.log(e);
+        //         }); 
+
+        //         slides[1].classList.add('active');// put active in vertical pixs so it shows when in portraits, hard coding as vert img is 2nd in the list
+                
+        //         // console.log(slides);
+        //         filterHorizontalImages(slides).forEach (e => { //for some reason this remove everything. need fixing
+        //             slider.removeChild(e); 
+        //                 // console.log(e);
+        //             });  
+        //             // slider.firstChild.classList.add('active'); //make the first pix active    
+        //     }
+
+            
+
+
+        //     auto = true; // auto scroll flag, globally declared
+        //     if (auto) {
+        //         // Run next slide at interval time
+        //         slideInterval = setInterval(nextSlide, intervalTime);
+        //     }
   
-        }    
-        else { //not in fullscreen mode
-            removeSlides(slides);
-            defaultView();
+        // }    
+        // else { //not in fullscreen mode
+        //     hideSlides(slides);
+        //     defaultView();
 
-            auto = false; //turn off auto scroll when not in fullscreen
-            clearInterval(slideInterval);// ^^
-        };
+         
+         
+
+        //     auto = false; //turn off auto scroll when not in fullscreen
+        //     clearInterval(slideInterval);// ^^
+        // };
       });
       document.querySelector('.brand_wrapper').addEventListener("click", function(){
          defaultView();
@@ -160,14 +277,50 @@ function viewOptions(){//make option clicked selected
 
 function defaultView(){
     const slideButtons = document.querySelectorAll('.buttons button')
-
-    removeSlides(slides);
+    const slider = document.querySelector(".slider");
+    hideSlides(slides);
     slideButtons.forEach( (e) => {
         e.style.display = 'none'; 
         document.querySelector('.slider').style.overflow = 'visible'; 
     })  ; 
 
+    slides.forEach (e => {
+        slider.appendChild(e); 
+        // console.log(e);
+    })
+
 }
+
+function filterVerticalImages(images){
+    imgArr = Array.from(images);
+    imgArrFiltered = imgArr.filter( vert => {
+        return vert.className.includes("vertical")     
+    });
+    console.log(imgArrFiltered);
+    return imgArrFiltered;
+}
+ 
+
+function filterHorizontalImages(images){
+    imgArr = Array.from(images);
+    imgArrFiltered = imgArr.filter( hor => {
+        return hor.className.includes("horizontal")     
+    });
+    console.log(imgArrFiltered);
+    return imgArrFiltered;
+}
+
+
+function getOrientation(){
+    var orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
+
+    console.log(orientation);
+    return orientation;
+
+}
+
+
+
 
 //*** Full Screen Slider ***//
 
@@ -176,7 +329,7 @@ function defaultView(){
 // const slides = document.querySelectorAll('.slider li');
 const next = document.querySelector('#next');
 const prev = document.querySelector('#prev');
-var auto = true; // Auto scroll
+var auto = false; // Auto scroll
 const intervalTime = 3000; 
 const slides = document.querySelectorAll(".slider li") //make this global?
 let slideInterval;
@@ -191,7 +344,7 @@ function addSlides(slides){
 
 };
 
-function removeSlides(slides){
+function hideSlides(slides){
     
     slides.forEach(slide => {
     slide.classList.remove('slide_img');
@@ -219,7 +372,7 @@ function nextSlide(){
        
     }
    
-    if(slides[1].classList.contains('active')) slides[slides.length -1].removeAttribute("style"); //remove style from the last photo when cycle back to the first photo, not compulsary, not affecting functionality, just code aesthatic 
+    // if(slides[0].classList.contains('active')) slides[slides.length -2].removeAttribute("style"); //remove style from the last photo when cycle back to the first photo, not compulsary, not affecting functionality, just code aesthatic 
 
     setTimeout(() => {
         active.classList.remove('active');
@@ -240,9 +393,10 @@ function prevSlide(){
 
      
     }
-    else slides[slides.length -1].classList.add('active');
-    
-    if(slides[slides.length -2].classList.contains('active')) slides[0].removeAttribute("style"); //remove style from the first photo when cycle back to the last photo, not compulsary, not affecting functionality, just code aesthatic 
+    else slides[slides.length -2].classList.add('active');
+
+    // if(slides[0].classList.contains('active')) slides[1].removeAttribute("style");
+    // if(slides[slides.length -2].classList.contains('active')) slides[0].removeAttribute("style"); //remove style from the first photo when cycle back to the last photo, not compulsary, not affecting functionality, just code aesthatic 
 
     setTimeout(() => {
         active.classList.remove('active');
