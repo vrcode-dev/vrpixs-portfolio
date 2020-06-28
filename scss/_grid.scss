@@ -1,4 +1,4 @@
-$base-size: calc(0.625 * 5rem);
+$base-size: calc(0.625 * 4rem);
 $ratio-const-length:  6;
 $ratio-const-width: 4; 
 
@@ -56,8 +56,8 @@ $ratio-const-width: 4;
         
         
         li:nth-child(n).vertical {
-            grid-row: span calc(2/3 * #{$ratio-const-length});
-            grid-column: span calc(2/3 * #{$ratio-const-width});   
+            grid-row: span 4; // 2/3 * 6
+            grid-column: span 3;   //2/3 * 4
         }
         
         
