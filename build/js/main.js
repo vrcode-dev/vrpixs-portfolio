@@ -111,8 +111,7 @@ function viewOptions(){//make option clicked selected
     
 
     //1st option as a default
-    // slides[0].classList.add('active'); //make the first pix active by default  
-    // slides[0].classList.add('active');
+    slides[0].classList.add('active'); //make the first pix active by default  
 
 
     if (getOrientation() == "Landscape") viewOpt[0].classList.add(active); 
@@ -198,70 +197,6 @@ function viewOptions(){//make option clicked selected
 
         screenModeTest();
 
-        // if (fullscreen.classList.contains(active)) {
-
-        //     slideButtons.forEach( (e) => { //display next/prev buttons
-        //         e.style.display = 'block';
-        //     })  
-    
-        //     document.querySelector('.slider').style.overflow = 'hidden';
-
-        //     if(getOrientation() == "Landscape" ){
-
-        //         addSlides(slides);
-            
-        //         // console.log(slider);
-        //         filterHorizontalImages(slides).forEach (e => {
-        //             slider.appendChild(e); 
-        //             // console.log(e);
-        //         });
-                
-
-        //         filterVerticalImages(slides).forEach (e => {
-        //             slider.removeChild(e); 
-        //             console.log(e);
-        //         });
-        //         console.log(slides);
-        //     }
-        //     else { 
-        //         addSlides(slides);
-
-        //         console.log("appeding vertical imgs for slideshow")    
-        //         filterVerticalImages(slides).forEach (e => {
-        //             slider.appendChild(e); 
-        //             // console.log(e);
-        //         }); 
-
-        //         slides[1].classList.add('active');// put active in vertical pixs so it shows when in portraits, hard coding as vert img is 2nd in the list
-                
-        //         // console.log(slides);
-        //         filterHorizontalImages(slides).forEach (e => { //for some reason this remove everything. need fixing
-        //             slider.removeChild(e); 
-        //                 // console.log(e);
-        //             });  
-        //             // slider.firstChild.classList.add('active'); //make the first pix active    
-        //     }
-
-            
-
-
-        //     auto = true; // auto scroll flag, globally declared
-        //     if (auto) {
-        //         // Run next slide at interval time
-        //         slideInterval = setInterval(nextSlide, intervalTime);
-        //     }
-  
-        // }    
-        // else { //not in fullscreen mode
-        //     hideSlides(slides);
-        //     defaultView();
-
-         
-         
-
-        //     auto = false; //turn off auto scroll when not in fullscreen
-        //     clearInterval(slideInterval);// ^^
-        // };
       });
       document.querySelector('.brand_wrapper').addEventListener("click", function(){
          defaultView();
