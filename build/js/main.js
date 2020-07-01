@@ -17,8 +17,9 @@ window.addEventListener('load', function() {
     document.querySelector('.picture_grid_container').style.display = "block"; //unhide from the annoyingthumbnail
     // images.forEach(image => {observer.observe(image);}) //lazyload
     getOrientation();
-    viewOptions();
-    // window.onresize = function(){ getOrientation(); }
+    gridAnimation();
+ 
+    window.onresize =  viewOptions();
  
    
   
@@ -116,9 +117,9 @@ function viewOptions(){//make option clicked selected
 
     if (getOrientation() == "Landscape") viewOpt[0].classList.add(active); 
     else  viewOpt[1].classList.add(active);
-    screenModeTest();
+    screenSizeCheck();
 
-    function screenModeTest() {        
+    function screenSizeCheck() {        
         
         if (fullscreen.classList.contains(active)) {
 
@@ -164,10 +165,7 @@ function viewOptions(){//make option clicked selected
                     // slider.firstChild.classList.add('active'); //make the first pix active    
             }
 
-        
-
-
-            auto = false; // auto scroll flag, globally declared
+            auto = true; // auto scroll flag, globally declared
             if (auto) {
                 // Run next slide at interval time
                 slideInterval = setInterval(nextSlide, intervalTime);
@@ -177,6 +175,7 @@ function viewOptions(){//make option clicked selected
         else { //not in fullscreen mode
             hideSlides(slides);
             defaultView();
+            gridAnimation();
 
         
         
@@ -195,13 +194,14 @@ function viewOptions(){//make option clicked selected
         current[0].className = current[0].className.replace(active, "");
         this.className +=  " " + active;   
 
-        screenModeTest();
+        screenSizeCheck();
 
       });
       document.querySelector('.brand_wrapper').addEventListener("click", function(){
          defaultView();
          viewOpt[1].classList.remove(active);
          viewOpt[0].classList.add(active);
+         gridAnimation();
         
 
       })
@@ -214,7 +214,8 @@ function defaultView(){
     const slideButtons = document.querySelectorAll('.buttons button')
     const slider = document.querySelector(".slider");
     hideSlides(slides);
-    slideButtons.forEach( (e) => {
+
+    slideButtons.forEach( (e) => {//hide prev/next btns when in grid view
         e.style.display = 'none'; 
         document.querySelector('.slider').style.overflow = 'visible'; 
     })  ; 
@@ -258,8 +259,6 @@ function getOrientation(){
 
 
 //*** Full Screen Slider ***//
-
-
 
 // const slides = document.querySelectorAll('.slider li');
 const next = document.querySelector('#next');
@@ -368,25 +367,9 @@ prev.addEventListener('click', e => {
 // ** END UTILITY FUNCTIONS ** //
 
 
-
-
-const svgPath = document.querySelectorAll('.brand');
-const svgText = anime({
-    targets: svgPath,
-    loop: true,
-    direction: 'alternate',
-    strokeDashoffset: [anime.setDashoffset, 0],
-    easing: 'easeInOutSine',
-    duration: 700,
-    delay: (el, i) => { return i * 500 }
-  });
-
-
-
-
   //anime.js lib animation
 
-window.onload = () =>{  
+function gridAnimation(){  
 
     anime.timeline({
         easing:'easeOutExpo',})

@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 @import 'grid';
 @import 'fullscreen';
+@import 'media';
 
 
 $text-primary: rgba(255, 255, 255, 0.7);
@@ -58,9 +59,6 @@ header {
     height: 8rem;
     padding: 2rem 2rem 0 2rem;
     color: $text-primary;
-    // background: rgb(0,0,0);
-    // background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%); 
-
 
     &::after {
         display: block;
@@ -77,127 +75,121 @@ header {
     
     }
 
+   
+    #nav {
+        display: flex;
+        justify-content: flex-end;
+
+    }
     .main_nav_container{ 
     display: flex;   
-    justify-content: flex-end;
-    height: 100%;
-    display: none;
-
-       
+    
+    
         
         .main_nav_item {
-            // @includelex-center-row;
-            // display:flex;
-            justify-items:center;
-            // align-self: center;
-            // background-color: red;
-            // margin: 0 1rem;
-            width: 100%;
+            display:flex;
+            justify-content: center;
+            z-index: 2;
             font-family: 'Varela Round', Helvetica, Montserrat, sans-serif;
             font-size: 0.9rem;
             font-weight: 500;
             text-transform: uppercase;
             font-style: normal;
-            height: 3rem ;
-            width: 150px;
+            height: 2rem ;
+            width: 120px;
             padding-top: 0.5rem;
+            font-size: 1rem;
+            margin: 0 1rem;
 
-            a.dropdown{
+            .dropdown {
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                & > a::after {
+                    content:"\f078";
+                    font-family: FontAwesome;
+                    display:block;
+                    position: relative;
+                    margin: auto;
+                    width: 1rem;
+                    height: 1rem;
+                   
+                }
 
-                background-color: green;
+                .sub_nav_item_container {
+                    // display:none->block and then fade opacity, and in reverse, fade opacity and then display:block->none.
+                  visibility: hidden;
+                  position: absolute;
+                  top: 5rem;
+                  background-color: black;
+                  display: flex;
+                  flex-direction: column;
+                  margin-top: 0.3rem;
+                  padding: 0.5rem 1rem;
+                  opacity: 0;
+                  transform: translateY(10%);
+                  border-top: 1px solid $hover-highlight;
+                  min-width: max-content;
+                  font-size: 0.9rem;
+  
+                    li {
+                        padding: 0.2rem 0;                         
+                    }
+        
+                    a:hover {
+                        color: $hover-highlight;
+                    }
+                }   
             }
 
             .dropdown:hover { //.main_nav_item
-                color: $hover-highlight;
-                
-                &::after {
+                & > a{
+                    color: $hover-highlight;
+                }
+
+                & > a::after {
                     transform: rotateX(180deg);
                     transition: all 0.2s ease-in-out;
-    
                 }  
 
-                
                 .sub_nav_item_container {
                     visibility: visible;
                     opacity: 1;
                     transform: translateY(0%);
                     transition: all 0.3s ease-in-out ;
-
-                    }    
-
-
-            }
-
-          
-
-            .sub_nav_item_container {
-                  //display:none->block and then fade opacity, and in reverse, fade opacity and then display:block->none.
-                // visibility: hidden;
-                background-color: black;
-                display: flex;
-                width: max-content;
-                flex-direction: column;
-                margin-top: 0.3rem;
-                padding: 0.5rem 1rem;
-                opacity: 1;
-                transform: translateY(10%);
-                border-top: 1px solid $hover-highlight;
-
-                    a {
-                        padding: 0.2rem 0;
-                    }
-                    a:hover {
-                        color: $hover-highlight;
-                    }
-             
+                }    
             }
             
-                         
-
-            .dropdown::after {
-                content:"\f078";
-                font-family: FontAwesome;
-                display:block;
-                position: relative;
-                margin: auto;
-                width: 1rem;
-                height: 1rem;
-            }
-
-
-            &:nth-last-child(2){
-                margin-left: -2rem ;
-                margin-right: -2rem;
-                z-index:999 ;
-
-                
-            } 
         }  
 
         .button {
             border: 2px solid rgba(255, 255, 255, 0.708);
-            margin-top: -0.4rem;
-            padding: 0.2rem 1rem;
+            margin-left: 1rem;
+            padding: 0.3rem 0.8rem;
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1rem;
             color:black;
             font-weight: bold;
             letter-spacing: -0.7px;  // counter the expand container size when bolded the font
             border-radius: 6px;
             background-color: white;  text-transform: uppercase;
+            z-index: 1000;
 
             &:hover{  
                 color: white;
                 background-color: transparent;
                 cursor: pointer;
-
-            }
-                
+            }           
         }
+
+        & > li:nth-last-child(2){ //main_nav_item -- blog
+             width:50px;
+        } 
+        & > li:nth-last-child(3){ //main_nav_item -- services
+             width:80px;
+        }     
     }
 }
-
-
 
 
 .brand_wrapper {
@@ -220,6 +212,52 @@ header {
 }
 
 
+.menu_icon {
+    position: absolute;
+    right: 2rem;
+    top:1rem;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    // display: none;
+    width: min-content;
+    justify-content: center;
+    
+    
+    &--line {
+        display: flex;
+        position: relative;
+        background: white;
+        height: 2px;
+        width: 1.3rem;
+        border-radius: 5px;
+       
+        justify-content: flex-end;
+        
+
+        &::before, &:after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            border-radius: 5px;
+            background: white;
+        }
+
+        &::before {
+            transform: translateY(-5px);
+            width: 1rem;
+        }
+        &::after {
+            transform: translateY(5px);
+            width: 0.8rem;
+        }
+    }
+}
+
+.menu_btn {
+    display:none;
+}
+
+
 .view_options {
     position: relative;
     margin: 0rem auto;
@@ -233,10 +271,7 @@ header {
 
     li.selected {
         color: $hover-highlight;
-        cursor: pointer;
-
-
-        
+        cursor: pointer;      
     }
 }
 
@@ -411,24 +446,3 @@ height: 100%;
     font-weight: normal;
     font-style: normal;
   }
-
-@media (max-width:599px){ //phone
-
-nav, .socials, .view_options{
-    display: none;
-}
-
-
-header {
-    
-    display: flex;
-    justify-content: center;
-    .brand_wrapper{
-
-        font-size: 8rem;
-    
-        // margin:0;
-    }
-}
-
-}
