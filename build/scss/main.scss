@@ -83,8 +83,6 @@ header {
     }
     .main_nav_container{ 
     display: flex;   
-    
-    
         
         .main_nav_item {
             display:flex;
@@ -218,7 +216,7 @@ header {
     top:1rem;
     padding: 1rem 0.5rem;
     cursor: pointer;
-    // display: none;
+    display: none;
     width: min-content;
     justify-content: center;
     
