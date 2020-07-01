@@ -1,0 +1,78 @@
+@mixin flex-center-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin flex-center-col {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+@media (max-width:599px){ //phone
+
+    nav, .socials, .view_options{
+        display: none;
+    }
+    
+    
+    header {
+        
+        display: flex;
+        justify-content: center;
+        .brand_wrapper{
+    
+            font-size: 8rem;
+        
+            // margin:0;
+        }
+    }
+    
+    }
+    
+@media screen and (max-width:769px){
+    .menu_icon {
+        display: initial;
+        z-index: 10000;
+    }
+
+    .view_options li {
+        display: none;
+    }
+
+
+
+    .main_nav_container{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        padding: 10rem 0;
+        width: 100vw;
+        min-height: 100vh;
+        font-size: 2rem;
+        color: white;
+        background-color: black; 
+        display:none;
+ 
+
+        .main_nav_item{
+            padding: 5rem;
+        }
+
+
+        .sub_nav_item_container {
+            position: relative;
+
+        }
+    }
+
+
+    .menu_btn:checked .main_nav_container{
+        display: unset;
+    }
+}
