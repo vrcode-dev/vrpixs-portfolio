@@ -9,17 +9,27 @@
 
 window.addEventListener('load', function() {
     let images = document.querySelectorAll("img");
+    let listNodes = document.querySelector('ul.slider');
+    
 
-   
+    shuffleListNodes(listNodes);// shuffle to different grid arrangement everytime
+    console.log(listNodes);
+    document.querySelector('.picture_grid_container').style.display = "block";
     determineOrientation(images);// add horizontal | vertical class to tags
     addDataSource(images); // add data-src and paths
 
-    document.querySelector('.picture_grid_container').style.display = "block"; //unhide from the annoyingthumbnail
     // images.forEach(image => {observer.observe(image);}) //lazyload
-    getOrientation();
+    // getOrientation();
     gridAnimation();
+    
  
-    window.onresize =  viewOptions();
+    // window.onresize =  viewOptions();// make this change viewoption based on orientation on resize
+
+
+    //TODO
+    //**** need to fix,,, viewOptions not working when shuffled */
+    // make lazyload for thumbnails too, rn only work for HD ones
+
  
    
   
@@ -68,6 +78,7 @@ function addDataSource(images){ //add data-src and image's path to img tag for L
     
         let srcAttri = image.getAttribute("src"); 
         let str = srcAttri.split(".");
+        let str2 = str[str.length-2].split("/");
 
         srcAttri = "." + str[str.length-2] + "-HD." + str[str.length-1]; //append HD to the name for HD quality photos
         // console.log(str);
@@ -81,7 +92,6 @@ function addDataSource(images){ //add data-src and image's path to img tag for L
 
 function determineOrientation(images){ //add horizontal or vertical class to parent element based on img's orientation
     if (images == undefined) return
-    console.log(images);
     images.forEach(image => {
     // console.log(image);
     let width = image.naturalWidth;
@@ -165,7 +175,7 @@ function viewOptions(){//make option clicked selected
                     // slider.firstChild.classList.add('active'); //make the first pix active    
             }
 
-            auto = true; // auto scroll flag, globally declared
+            auto = false; // auto scroll flag, globally declared
             if (auto) {
                 // Run next slide at interval time
                 slideInterval = setInterval(nextSlide, intervalTime);
@@ -175,7 +185,7 @@ function viewOptions(){//make option clicked selected
         else { //not in fullscreen mode
             hideSlides(slides);
             defaultView();
-            gridAnimation();
+            // gridAnimation();
 
         
         
@@ -185,9 +195,6 @@ function viewOptions(){//make option clicked selected
         };
     }
    
-
-   
-
     for (let i = 0; i < viewOpt.length; i++) {
         viewOpt[i].addEventListener("click", function() {//make viewoption active when clicked
         let current = document.getElementsByClassName(active);
@@ -362,7 +369,52 @@ prev.addEventListener('click', e => {
   });
 
 
+  //*** SHUFFLE PHOTO GRID ******/
+
+  function shuffleListNodes (listNodes) {
+    listNodes = document.querySelector('ul.slider'); //not neccessary as listNodes will be declared globally prior to functino call
+    for (let i = listNodes.children.length; i >= 0; i--) {
+        let shuffledNode = listNodes.children[Math.random() * i | 0]
+        listNodes.appendChild(shuffledNode); //append || move the nodes in ul.slider
+        document.querySelector('.picture_grid_container').style.display = "block";
+       
+    }
+
+    return listNodes;
+
+}
+
+  // *** DETECT HOVER ENABLED DEVICES *** //
+    //https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
   
+
+//     function watchForHover() {
+//     // lastTouchTime is used for ignoring emulated mousemove events
+//     let lastTouchTime = 0
+  
+//     function enableHover() {
+//       if (new Date() - lastTouchTime < 500) return
+//       document.body.classList.add('hasHover')
+//     }
+  
+//     function disableHover() {
+//       document.body.classList.remove('hasHover')
+//     }
+  
+//     function updateLastTouchTime() {
+//       lastTouchTime = new Date()
+//     }
+  
+//     document.addEventListener('touchstart', updateLastTouchTime, true)
+//     document.addEventListener('touchstart', disableHover, true)
+//     document.addEventListener('mousemove', enableHover, true)
+  
+//     enableHover()
+//   }
+  
+//   watchForHover()
+
+  // ** END HOVER DETECTION ** //
 
 // ** END UTILITY FUNCTIONS ** //
 
@@ -376,8 +428,8 @@ function gridAnimation(){
 
     .add({
         targets: ".picture_grid_container .slider img",
-        duration: (el,i) => 1000 + i*75,
-        delay: (el,i) => i*50,
+        duration: (el,i) => 700 + i*10,
+        delay: (el,i) => i*30,
         opacity: {
             value: [0,1],
             easing: 'linear'

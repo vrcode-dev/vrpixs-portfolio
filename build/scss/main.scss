@@ -28,6 +28,29 @@ $hover-highlight:  rgba(255, 255, 255, 1);
     filter: blur($val);
 }
 
+@mixin hover-supported {  //disable hover for touch devices or screen < 768pxs,
+    // ref: https://medium.com/@djpjgj/css-magic-pt-1-prevent-css-hover-on-touch-devices-56b3f8a44240
+
+    @media all and (pointer: coarse), (min-width:768px) {
+        &:hover {
+            @content;
+        }
+    }
+    // @media not all and (pointer: coarse) {
+    //     &:hover {
+    //         @content;
+    //     }
+    // }
+}
+
+.center {
+    height: 100vh;
+    @include flex-center-row;
+    @include flex-center-col;
+    color:white;
+    font-family: 'Varela Round', Helvetica, Montserrat, sans-serif;
+}
+
 * {
 margin: 0;
 padding: 0;
@@ -57,7 +80,7 @@ header {
     grid-auto-flow: column;
     grid-template-columns: 1fr 1fr 1fr;
     height: 8rem;
-    padding: 2rem 2rem 0 2rem;
+    padding: 2rem 1rem 0 1rem;
     color: $text-primary;
 
     &::after {
@@ -93,7 +116,7 @@ header {
             font-weight: 500;
             text-transform: uppercase;
             font-style: normal;
-            height: 2rem ;
+            height: 3rem ;
             width: 120px;
             padding-top: 0.5rem;
             font-size: 1rem;
@@ -103,6 +126,7 @@ header {
                 display:flex;
                 flex-direction: column;
                 align-items: center;
+
                 & > a::after {
                     content:"\f078";
                     font-family: FontAwesome;
@@ -122,7 +146,6 @@ header {
                   background-color: black;
                   display: flex;
                   flex-direction: column;
-                  margin-top: 0.3rem;
                   padding: 0.5rem 1rem;
                   opacity: 0;
                   transform: translateY(10%);
@@ -134,13 +157,17 @@ header {
                         padding: 0.2rem 0;                         
                     }
         
-                    a:hover {
+                     a:hover {
                         color: $hover-highlight;
                     }
-                }   
+                }
+                
+                
             }
+        }  
 
-            .dropdown:hover { //.main_nav_item
+        .main_nav_item .dropdown { //.main_nav_item dropdown hover
+            @include hover-supported() { //disable hover for touch devices
                 & > a{
                     color: $hover-highlight;
                 }
@@ -155,14 +182,13 @@ header {
                     opacity: 1;
                     transform: translateY(0%);
                     transition: all 0.3s ease-in-out ;
-                }    
-            }
-            
-        }  
+                }
+            }    
+        }
 
         .button {
             border: 2px solid rgba(255, 255, 255, 0.708);
-            margin-left: 1rem;
+            margin: 0 1rem;
             padding: 0.3rem 0.8rem;
             text-align: center;
             font-size: 1rem;
@@ -171,9 +197,9 @@ header {
             letter-spacing: -0.7px;  // counter the expand container size when bolded the font
             border-radius: 6px;
             background-color: white;  text-transform: uppercase;
-            z-index: 1000;
+            z-index: 100;
 
-            &:hover{  
+             &:hover{  
                 color: white;
                 background-color: transparent;
                 cursor: pointer;
@@ -203,7 +229,7 @@ header {
     font-display: fallback;
     cursor: pointer;
 
-    &:hover {
+     &:hover {
         color: $hover-highlight;
     }
    
@@ -212,15 +238,13 @@ header {
 
 .menu_icon {
     position: absolute;
-    right: 2rem;
-    top:1rem;
+    right: 1rem;
+    top: 1rem;
     padding: 1rem 0.5rem;
-    cursor: pointer;
-    display: none;
     width: min-content;
     justify-content: center;
-    
-    
+    cursor: pointer;
+
     &--line {
         display: flex;
         position: relative;
@@ -228,9 +252,10 @@ header {
         height: 2px;
         width: 1.3rem;
         border-radius: 5px;
+        
        
         justify-content: flex-end;
-        
+        transition: all 0.3s;
 
         &::before, &:after {
             content: "";
@@ -238,6 +263,8 @@ header {
             height: 100%;
             border-radius: 5px;
             background: white;
+            transition: all 0.6s;
+          
         }
 
         &::before {
@@ -251,9 +278,40 @@ header {
     }
 }
 
-.menu_btn {
+#menu_btn, label {
     display:none;
 }
+
+#menu_btn:checked  {
+    // & .main_nav_container{ opacity: 1;}
+    & ~ label {
+
+        .menu_icon--line {
+            background: rgba($color: #000000, $alpha: 0);
+        }
+
+        .menu_icon--line::before,  .menu_icon--line::after{
+            width: 1rem;
+        }
+
+        .menu_icon--line::before {
+            transform: rotateZ(41deg);           
+        }
+
+        .menu_icon--line::after {
+            transform: rotateZ(-41deg);
+        }
+    }
+
+
+
+
+
+}
+
+
+
+
 
 
 .view_options {
@@ -312,7 +370,7 @@ header {
                    
         }
 
-        a:hover {
+         a:hover {
             color: $hover-highlight;
         }
 
@@ -320,8 +378,6 @@ header {
 
     } 
 }
-
-
 
 
 
