@@ -9,70 +9,171 @@
     justify-content:center;
     align-items: center;
 }
-
-@media (max-width:599px){ //phone
-
-    nav, .socials, .view_options{
-        display: none;
-    }
-    
-    
-    header {
-        
-        display: flex;
-        justify-content: center;
-        .brand_wrapper{
-    
-            font-size: 8rem;
-        
-            // margin:0;
-        }
-    }
-    
-    }
-    
-@media screen and (max-width:769px){
-    .menu_icon {
-        display: initial;
-        z-index: 10000;
-    }
-
-    .view_options li {
-        display: none;
-    }
+@mixin fade-out {
+    visibility: hidden;
+    opacity: 0;
+   
+}
+@mixin fade-in{
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.6s ease-in-out;
+}
 
 
+    
+@media screen and (max-width:1000px){
+    .menu_icon, .brand_wrapper, #prev, #next {
+        z-index: 100;
+    }
+
+    .view_options  {
+        z-index: 101;
+    }
+    label[for="menu_btn"] {
+        display: block;
+    }
+    
+
+    .brand_wrapper{
+        position: relative;
+        margin: auto;
+        width: 100%;
+    }
 
     .main_nav_container{
         position: absolute;
-        display: flex;
+        background-color: black; 
+        width: 100vw;
+        min-height: 100vh;
+        top: 0;
+        left: 0;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        top: 0;
-        left: 0;
-        padding: 10rem 0;
-        width: 100vw;
-        min-height: 100vh;
-        font-size: 2rem;
-        color: white;
-        background-color: black; 
-        display:none;
- 
+        margin: auto 0;
+        color: white;    
+        @include fade-out();
+        overflow: hidden;
 
         .main_nav_item{
-            padding: 5rem;
+            padding: 7rem;
+           
+            a {
+                font-size: 1.5rem;
+                //  visibility: hidden;
+        
+            }
         }
 
+        a .button{ //change size of button for ipad /// continue here!!!
+            padding: 7rem;
+            font-size: 1rem;
+        }
+    }
+    
 
-        .sub_nav_item_container {
+    .socials {
+        position: relative;
+        width: 100%;
+        height: 5rem;
+        @include fade-out();
+
+        ul{
+            width: 100%;     
+
+            li{
+                font-size: 2rem;
+                padding: 1rem;
+                margin-bottom: 1rem;        
+
+            }
+        }
+    }
+
+    #menu_btn {
+        transition: all 0.6s ease-in-out;
+
+    }
+    #menu_btn:checked  {
+        overflow: hidden;
+        cursor: pointer;
+        & ~ nav > .main_nav_container,  & ~ .socials {
+    
+            @include fade-in()  
+        }
+        & ~ .view_options {
+            @include fade-out();
+            transition: all 0.6s ease-out;
+        }
+
+        & .buttons .button{ // this doesn work 
+            @include fade-out();
+
+        }
+
+    }
+  
+    }
+
+    @media (max-width:599px){ //phone
+        .header
+
+        .brand_wrapper {
+            margin: 0;
+            justify-self: center;
+         
+        }
+        .view_options li{
+            display: none;
+        }
+        
+        .socials {
             position: relative;
+            width: 100%;
+            height: 2rem;
+        
+            ul{
+                width: 100%;
+                
+        
+                li{
+                    font-size: 1.5rem;
+                    padding: 0.7rem;
+                    margin-bottom: 0;
 
+        
+                }
+            }
         }
-    }
+        .main_nav_container{
+            .main_nav_item{
+                height: 2rem;
+                padding: 5rem;
+                // display: none;
+                a {
+                    font-size: 1.2rem;
+                }
+            
+            }
 
 
-    .menu_btn:checked .main_nav_container{
-        display: unset;
-    }
-}
+            
+        }
+            
+            
+        //     header {
+                
+        //         display: flex;
+        //         justify-content: center;
+        //         .brand_wrapper{
+            
+        //             font-size: 8rem;
+                
+        //             // margin:0;
+        //         }
+        //     }
+            
+            }
+
+
