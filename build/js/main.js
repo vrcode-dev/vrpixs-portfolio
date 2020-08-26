@@ -40,7 +40,7 @@ function imageObserver(entries, observer) {
         if(entry.isIntersecting){ 
         const img = entry.target;
         const img_src = img.dataset.src;
-        console.log("lazy loading", img);
+        // console.log("lazy loading", img);
         img.src = img_src;
 
         // img.classList.add('fade');
