@@ -9,6 +9,16 @@
     justify-content:center;
     align-items: center;
 }
+@mixin fade-out {
+    visibility: hidden;
+    opacity: 0;
+   
+}
+@mixin fade-in{
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.6s ease-in-out;
+}
 
 
     
@@ -17,25 +27,19 @@
         z-index: 100;
     }
 
+    .view_options  {
+        z-index: 101;
+    }
     label[for="menu_btn"] {
         display: block;
     }
     
-    .header{
-      @include flex-center-row;
-    //   width: 100%;
-    }
 
     .brand_wrapper{
         position: relative;
         margin: auto;
         width: 100%;
     }
-
-    .view_options li {
-        display: none;
-    }
-
 
     .main_nav_container{
         position: absolute;
@@ -47,19 +51,17 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        width: 100%;
         margin: auto 0;
-        color: white;
-        opacity: 0;
-        display: none;
-        // transition: all 0.6s ease-in-out;
- 
+        color: white;    
+        @include fade-out();
+        overflow: hidden;
 
         .main_nav_item{
             padding: 7rem;
-            // display: none;
+           
             a {
                 font-size: 1.5rem;
+                //  visibility: hidden;
         
             }
         }
@@ -75,17 +77,15 @@
         position: relative;
         width: 100%;
         height: 5rem;
-       
-  
+        @include fade-out();
 
         ul{
-            width: 100%;
-          
-            
+            width: 100%;     
 
             li{
                 font-size: 2rem;
                 padding: 1rem;
+                margin-bottom: 1rem;        
 
             }
         }
@@ -96,25 +96,42 @@
 
     }
     #menu_btn:checked  {
+        overflow: hidden;
         cursor: pointer;
-        & ~ nav > .main_nav_container {
-            opacity: 1;
-            transition: all 0.6s ease-in-out;
+        & ~ nav > .main_nav_container,  & ~ .socials {
+    
+            @include fade-in()  
+        }
+        & ~ .view_options {
+            @include fade-out();
+            transition: all 0.6s ease-out;
+        }
+
+        & .buttons .button{ // this doesn work 
+            @include fade-out();
+
         }
 
     }
+  
     }
 
     @media (max-width:599px){ //phone
+        .header
 
-        //     nav, .socials, .view_options{
-        //         display: none;
-        //     }
+        .brand_wrapper {
+            margin: 0;
+            justify-self: center;
+         
+        }
+        .view_options li{
+            display: none;
+        }
         
         .socials {
             position: relative;
             width: 100%;
-            height: 3rem;
+            height: 2rem;
         
             ul{
                 width: 100%;
@@ -122,20 +139,27 @@
         
                 li{
                     font-size: 1.5rem;
-                    padding: 0.5rem;
+                    padding: 0.7rem;
+                    margin-bottom: 0;
+
         
                 }
             }
         }
         .main_nav_container{
-        .main_nav_item{
-            padding: 5rem;
-            // display: none;
-            a {
-                font-size: 1.2rem;
+            .main_nav_item{
+                height: 2rem;
+                padding: 5rem;
+                // display: none;
+                a {
+                    font-size: 1.2rem;
+                }
+            
             }
+
+
+            
         }
-    }
             
             
         //     header {

@@ -238,7 +238,7 @@ header {
 
 .menu_icon {
     position: absolute;
-    right: 1rem;
+    right: 2rem;
     top: 1rem;
     padding: 1rem 0.5rem;
     width: min-content;
@@ -283,7 +283,7 @@ header {
 }
 
 #menu_btn:checked  {
-    // & .main_nav_container{ opacity: 1;}
+
     & ~ label {
 
         .menu_icon--line {
@@ -303,13 +303,16 @@ header {
         }
     }
 
-
-
-
-
 }
 
 
+
+.hidden {
+    visibility:hidden;
+}
+.show {
+    visibility: visible;
+}
 
 
 
