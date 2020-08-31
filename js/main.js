@@ -1,10 +1,12 @@
 // ** EXECUTION AREA ** //
 
 window.addEventListener('load', function() {
-    let images = document.querySelectorAll("img");
-    let listNodes = document.querySelector('ul.slider');
+    let images = document.querySelectorAll(".picture_grid_imgs img");
+    let lastestOpenedImg;
 
-    shuffleListNodes(listNodes);// shuffle to different grid arrangement everytime
+    // let listNodes = document.querySelector('ul.picture_grid_imgs');
+
+    shuffleListNodes(images);// shuffle to different grid arrangement everytime
    
     document.querySelector('.picture_grid_container').style.display = "block";
     determineOrientation(images);// add horizontal | vertical class to tags
@@ -17,7 +19,13 @@ window.addEventListener('load', function() {
     if (isTablet()) gridAnimation(100);
     else gridAnimation(30);
     
+
+  
     //TODO
+
+    // make the arrow keys work for transitioning to next/prev images
+    // only show next/prev buttons when hover near the area. 
+    // for the other pages, dont make the nav/logo sticky 
 
     // make lazyload for thumbnails too, rn only work for HD ones
     // fix when switch viewoption then next&prev buttons in fullscreen need to wait for 1st active pix to traverse the the previous active pix before switch, 
@@ -25,6 +33,21 @@ window.addEventListener('load', function() {
 
 
  // ***** END EXECUTION AREA **** ///
+
+
+
+//
+
+function tempFunc (img) {
+    img.onclick = function () {
+        let getImgURL = img.getAttribute("src"); 
+        let str = getImgURL.split(".");
+        getImgURL = "." + str[str.length-2] + "-HD." + str[str.length-1];
+    };
+
+}
+
+
 
 
 // ***** Lazyloading images ***** ///
@@ -118,9 +141,9 @@ function viewOptions(){//make option clicked selected
     let active = "selected";
     let grid = document.querySelector('#grid_view');
     let fullscreen = document.querySelector('#fullscreen_view');  
-    let slides = document.querySelectorAll('.slider li');
+    let slides = document.querySelectorAll('.picture_grid_imgs li');
     let slideButtons = document.querySelectorAll('.buttons button')
-    listNodes = document.querySelector('ul.slider');
+    listNodes = document.querySelector('ul.picture_grid_imgs');
     imgNodes = listNodes.children;
     
   
@@ -153,14 +176,15 @@ function viewOptions(){//make option clicked selected
    }
 
     function screenSizeCheck() {        
-        // slidesTemp = document.querySelectorAll('.slider li'); //copy the whole img then restore later when switching viewsOptions
+        // slidesTemp = document.querySelectorAll('.picture_grid_imgs li'); //copy the whole img then restore later when switching viewsOptions
         addSlides(slides); //add tags to all img
 
         if (fullscreen.classList.contains(active)) { // if fullscreen selected
 
+    
             slideButtons.forEach( (e) => { //display next/prev buttons
                 e.style.display = 'block';
-                document.querySelector('.slider').style.overflow = 'hidden';
+                document.querySelector('.picture_grid_imgs').style.overflow = 'hidden';
             })  
             
 
@@ -198,10 +222,10 @@ function viewOptions(){//make option clicked selected
                     listNodes.removeChild(e); 
                         // console.log(e);
                     });  
-                    // slider.firstChild.classList.add('active'); //make the first pix active    
+                    // picture_grid_imgs.firstChild.classList.add('active'); //make the first pix active    
             }
 
-            auto = false; // auto scroll flag, globally declared
+            auto = true; // auto scroll flag, globally declared
             if (auto) {
                 // Run next slide at interval time
                 slideInterval = setInterval(nextSlide, intervalTime);
@@ -217,7 +241,7 @@ function viewOptions(){//make option clicked selected
             gridView();
             // gridAnimation();
         
-            auto = false; //turn off auto scroll when not in fullscreen
+            auto = true; //turn off auto scroll when not in fullscreen
             clearInterval(slideInterval);// ^^
         };
 
@@ -231,7 +255,7 @@ function viewOptions(){//make option clicked selected
 
         slideButtons.forEach( (e) => {//hide prev/next btns when in grid view
             e.style.display = 'none'; 
-            document.querySelector('.slider').style.overflow = 'visible'; 
+            document.querySelector('.picture_grid_imgs').style.overflow = 'visible'; 
         })  ; 
 
         slides.forEach (e => {
@@ -263,12 +287,56 @@ function viewOptions(){//make option clicked selected
 ///******* End viewOptions *********///
 
 
+//fullscreen api
+function launchIntoFullscreen(element) {
+    if(element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if(element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if(element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if(element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+  }
 
 
+  function exitFullscreen() {
+    if(document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if(document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if(document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
 
-//*** Full Screen Slider ***// 
+  function requestFullScreen() {
 
-// const slides = document.querySelectorAll('.slider li');
+    var el = document.body;
+  
+    // Supports most browsers and their versions.
+    var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
+    || el.mozRequestFullScreen || el.msRequestFullScreen;
+  
+    if (requestMethod) {
+  
+      // Native full screen.
+      requestMethod.call(el);
+  
+    } else if (typeof window.ActiveXObject !== "undefined") {
+  
+      // Older IE.
+      var wscript = new ActiveXObject("WScript.Shell");
+  
+      if (wscript !== null) {
+        wscript.SendKeys("{F11}");
+      }
+    }
+  }
+//*** Full Screen picture_grid_imgs ***// 
+
+// const slides = document.querySelectorAll('.picture_grid_imgs li');
 const next = document.querySelector('#next');
 const prev = document.querySelector('#prev');
 var auto = false; // Auto scroll
@@ -363,7 +431,7 @@ function prevSlide(){
         if(active.nextElementSibling) active.nextElementSibling.removeAttribute("style");
     })
 };
-//*** END Full Screen Slider ***// 
+//*** END Full Screen picture_grid_imgs ***// 
 
 
 
@@ -371,10 +439,10 @@ function prevSlide(){
   //*** SHUFFLE PHOTO GRID ******/
 
   function shuffleListNodes (listNodes) {
-    listNodes = document.querySelector('ul.slider'); //not neccessary as listNodes will be declared globally prior to functino call
+    listNodes = document.querySelector('ul.picture_grid_imgs'); //not neccessary as listNodes will be declared globally prior to functino call
     for (let i = listNodes.children.length; i >= 0; i--) {
         let shuffledNode = listNodes.children[Math.random() * i | 0]
-        listNodes.appendChild(shuffledNode); //append || move the nodes in ul.slider
+        listNodes.appendChild(shuffledNode); //append || move the nodes in ul.picture_grid_imgs
         document.querySelector('.picture_grid_container').style.display = "block";
        
     }
@@ -426,7 +494,7 @@ function gridAnimation(delay){
         easing:'easeOutExpo',})
 
     .add({
-        targets: ".picture_grid_container .slider img",
+        targets: ".picture_grid_container .picture_grid_imgs img",
         duration: (el,i) => 700 + i*10,
         delay: (el,i) => i*delay,
         opacity: {

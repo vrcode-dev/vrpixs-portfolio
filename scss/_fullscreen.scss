@@ -4,7 +4,7 @@ $hover-highlight:  rgba(255, 255, 255, 1);
 
 
 //****  CSS FOR FULLSCREEN VIEW ****//
-.slider {
+.picture_grid_imgs {
     position: relative;
     // overflow: visible;
     height: 100vh;
@@ -52,14 +52,14 @@ $hover-highlight:  rgba(255, 255, 255, 1);
 
   .buttons button#next {
     position: absolute;
-    top: 50%;
+    top: calc(50% + 0.75rem);
     transform: translateY(-50%); //offset the off-center pos
     right: 1rem;
   }
   
   .buttons button#prev {
     position: absolute;
-    top: 50%;
+    top: calc(50% + 0.75rem);
     transform: translateY(-50%);
     left: 1rem
   }

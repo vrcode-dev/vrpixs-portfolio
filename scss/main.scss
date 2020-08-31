@@ -216,6 +216,7 @@ header {
 }
 
 
+
 .brand_wrapper {
     font-family: Northwell;
     line-height: 100%;
@@ -240,7 +241,7 @@ header {
     position: absolute;
     right: 2rem;
     top: 1rem;
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.7rem;
     width: min-content;
     justify-content: center;
     cursor: pointer;
@@ -282,9 +283,11 @@ header {
     display:none;
 }
 
+
 #menu_btn:checked  {
 
     & ~ label {
+       
 
         .menu_icon--line {
             background: rgba($color: #000000, $alpha: 0);
