@@ -2,10 +2,37 @@ $base-size: calc(0.625 * 4rem);
 $ratio-const-length:  6;
 $ratio-const-width: 4; 
 
+$text-primary: rgba(255, 255, 255, 0.7);
+$hover-highlight:  rgba(255, 255, 255, 1);
+@mixin flex-center-col {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+// images titles
+
+// .picture_grid_imgs  {
+//     display:flex;
+//     flex-direction: column;
+//     align-items: center;
+
+//     & > a::after {
+//         content:"\f078";
+//         font-family: FontAwesome;
+//         display:block;
+//         position: relative;
+//         margin: auto;
+//         width: 1rem;
+//         height: 1rem;
+       
+//     }
+
 .picture_grid_container { // VRPIXS's custom grid layout
     margin: auto;
     background-color: black;
-    display:none;
+    display:none; //to hide small unstyled thumbnails when page first reloated
 
     ul {
         display: grid;
@@ -13,9 +40,55 @@ $ratio-const-width: 4;
         grid-auto-rows: $base-size;
         grid-auto-flow: dense;
         gap: 5px;
+        
 
         li {
+            display:block;
             list-style: none;
+            position: relative;
+            // transition: all 0.6s ease-in-out;
+
+            &::before{ //img overlay
+                content: "";
+                z-index: 1;
+                width: 100%;
+                min-height: 100%;
+                display: block;
+                top: 0;
+                position: absolute;
+                background-color: black;
+                opacity: 0;
+
+
+            }
+
+            &:hover::before {
+                opacity: 0.5;
+                transition: all 0.6s ease-in-out;
+                
+            }
+            &:hover::after{
+                opacity: 1;
+                transition: all 0.6s ease-in-out;
+
+            }
+            &::after{
+                content: "\f424";
+                font-family: FontAwesome;
+                display:block;
+                position: absolute;
+                margin: auto;
+                width: 1rem;
+                height: 1rem;
+                z-index: 1;
+                color: $hover-highlight;
+                top: calc(50% - 0.5rem);
+                left: calc(50% - 0.5rem);
+                cursor: pointer;
+  
+                opacity: 0;
+
+            }
             
             img {
                 width: 100%;
@@ -23,8 +96,13 @@ $ratio-const-width: 4;
                 object-fit: cover;
                 // filter: grayscale(100%) contrast(110%) brightness(1.2);
                 opacity: 100%; //change this to 40%
+
+
+                
+             
             }   
 
+            
             img:hover {
                 filter: contrast(80%);
                 opacity: 50%;
@@ -38,6 +116,10 @@ $ratio-const-width: 4;
 
                 }
             }  
+
+            img:hover::before{
+                content: "sss";
+            }
         }
 
         li:nth-child(n).horizontal {
