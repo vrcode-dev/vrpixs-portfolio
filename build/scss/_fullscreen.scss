@@ -36,12 +36,14 @@ $hover-highlight:  rgba(255, 255, 255, 1);
 .buttons button {
     border: none;
     background-color: transparent;
+    position: absolute;
     color: $text-primary;
     cursor: pointer;
     border-radius: 50%;
     // outline: none;
     font-size: 1.5rem;
     display: none;
+   
 
     &:hover {
         color: $hover-highlight;
@@ -55,12 +57,14 @@ $hover-highlight:  rgba(255, 255, 255, 1);
     top: calc(50% + 0.75rem);
     transform: translateY(-50%); //offset the off-center pos
     right: 1rem;
+    z-index: 1;
   }
   
   .buttons button#prev {
     position: absolute;
     top: calc(50% + 0.75rem);
     transform: translateY(-50%);
-    left: 1rem
+    left: 1rem;
+    z-index: 1;
   }
 //**** END CSS FOR FULLSCREEN VIEW ****//

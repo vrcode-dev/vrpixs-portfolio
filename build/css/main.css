@@ -40,12 +40,6 @@
   transition: all 0.6s ease-in-out;
 }
 
-.picture_grid_container ul li:hover::after {
-  opacity: 1;
-  -webkit-transition: all 0.6s ease-in-out;
-  transition: all 0.6s ease-in-out;
-}
-
 .picture_grid_container ul li::after {
   content: "\f424";
   font-family: FontAwesome;
@@ -60,6 +54,12 @@
   left: calc(50% - 0.5rem);
   cursor: pointer;
   opacity: 0;
+}
+
+.picture_grid_container ul li:hover::after {
+  opacity: 1;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
 }
 
 .picture_grid_container ul li img {
@@ -139,6 +139,7 @@
 .buttons button {
   border: none;
   background-color: transparent;
+  position: absolute;
   color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   border-radius: 50%;
@@ -156,6 +157,7 @@
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   right: 1rem;
+  z-index: 1;
 }
 
 .buttons button#prev {
@@ -164,6 +166,7 @@
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   left: 1rem;
+  z-index: 1;
 }
 
 @media screen and (max-width: 1000px) {
@@ -198,11 +201,12 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    margin: auto 0;
+    margin: -3rem 0;
     color: white;
     visibility: hidden;
     opacity: 0;
     overflow: hidden;
+    z-index: 2;
   }
   .main_nav_container .main_nav_item {
     padding: 7rem;
@@ -256,19 +260,14 @@
 }
 
 @media (max-width: 599px) {
-  .header
-.brand_wrapper {
-    margin: 0;
-    -ms-grid-column-align: center;
-        justify-self: center;
-  }
-  .view_options li {
+  div.view_options {
     display: none;
   }
   .socials {
     position: relative;
     width: 100%;
     height: 2rem;
+    margin-bottom: 1rem;
   }
   .socials ul {
     width: 100%;
@@ -277,6 +276,9 @@
     font-size: 1.5rem;
     padding: 0.7rem;
     margin-bottom: 0;
+  }
+  .main_nav_container {
+    display: none;
   }
   .main_nav_container .main_nav_item {
     height: 2rem;
@@ -349,9 +351,9 @@ header::after {
   position: absolute;
   top: 0;
   z-index: -1;
-  width: 130%;
+  width: 150%;
   height: 13rem;
-  margin: -5rem -2rem 0 -6rem;
+  margin: -5rem 0rem 0rem -3rem;
   background: black;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), color-stop(60%, rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0)));
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 100%);
@@ -451,7 +453,27 @@ header .main_nav_container .main_nav_item .dropdown .sub_nav_item_container a:ho
   color: white;
 }
 
-@media all and (pointer: coarse), (min-width: 768px) {
+@media not all and (pointer: coarse) {
+  header .main_nav_container .main_nav_item .dropdown:hover > a {
+    color: white;
+  }
+  header .main_nav_container .main_nav_item .dropdown:hover > a::after {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+  header .main_nav_container .main_nav_item .dropdown:hover .sub_nav_item_container {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+@media (min-width: 768px) {
   header .main_nav_container .main_nav_item .dropdown:hover > a {
     color: white;
   }
@@ -504,9 +526,9 @@ header .main_nav_container > li:nth-last-child(3) {
   font-family: Northwell;
   line-height: 100%;
   font-size: 6rem;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 0 5rem;
   -ms-grid-column-align: start;
       justify-self: start;
@@ -520,6 +542,33 @@ header .main_nav_container > li:nth-last-child(3) {
 
 .brand_wrapper:hover {
   color: white;
+}
+
+@media (max-width: 599px) {
+  header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  header ul {
+    display: none;
+  }
+  .brand_wrapper {
+    position: relative;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: -1rem 0;
+    font-size: 6rem;
+    padding-left: 1rem;
+    font-display: fallback;
+  }
+  .brand_wrapper:hover {
+    color: white;
+  }
 }
 
 .menu_icon {

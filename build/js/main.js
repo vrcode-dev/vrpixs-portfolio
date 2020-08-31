@@ -27,6 +27,8 @@ window.addEventListener('load', function() {
     // only show next/prev buttons when hover near the area. 
     // for the other pages, dont make the nav/logo sticky 
 
+    //when switching from slideshow mode back and forth, active image restarts to index 0, fix this so it continues
+
     // make lazyload for thumbnails too, rn only work for HD ones
     // fix when switch viewoption then next&prev buttons in fullscreen need to wait for 1st active pix to traverse the the previous active pix before switch, 
  });   
@@ -340,7 +342,7 @@ function launchIntoFullscreen(element) {
 const next = document.querySelector('#next');
 const prev = document.querySelector('#prev');
 var auto = false; // Auto scroll
-const intervalTime = 3000; 
+const intervalTime = 4000; 
 let slideInterval;
 
 
