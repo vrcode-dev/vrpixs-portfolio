@@ -181,6 +181,7 @@ function viewOptions(){//make option clicked selected
 
         if (fullscreen.classList.contains(active)) { // if fullscreen selected
 
+    
             slideButtons.forEach( (e) => { //display next/prev buttons
                 e.style.display = 'block';
                 document.querySelector('.picture_grid_imgs').style.overflow = 'hidden';
@@ -286,9 +287,53 @@ function viewOptions(){//make option clicked selected
 ///******* End viewOptions *********///
 
 
+//fullscreen api
+function launchIntoFullscreen(element) {
+    if(element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if(element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if(element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if(element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+  }
 
 
+  function exitFullscreen() {
+    if(document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if(document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if(document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
 
+  function requestFullScreen() {
+
+    var el = document.body;
+  
+    // Supports most browsers and their versions.
+    var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
+    || el.mozRequestFullScreen || el.msRequestFullScreen;
+  
+    if (requestMethod) {
+  
+      // Native full screen.
+      requestMethod.call(el);
+  
+    } else if (typeof window.ActiveXObject !== "undefined") {
+  
+      // Older IE.
+      var wscript = new ActiveXObject("WScript.Shell");
+  
+      if (wscript !== null) {
+        wscript.SendKeys("{F11}");
+      }
+    }
+  }
 //*** Full Screen picture_grid_imgs ***// 
 
 // const slides = document.querySelectorAll('.picture_grid_imgs li');
