@@ -1,11 +1,18 @@
 // ** EXECUTION AREA ** //
 
+// (function() {
+//     document.getElementById("#header-placeholder").innerHTML.load("header.html");
+//   })();
+includeHTML();
+
 window.addEventListener('load', function() {
     let images = document.querySelectorAll(".picture_grid_imgs img");
     let lastestOpenedImg;
 
-    // let listNodes = document.querySelector('ul.picture_grid_imgs');
+    
 
+    // let listNodes = document.querySelector('ul.picture_grid_imgs');
+    // document.getElementById("header-placeholder").innerHTML.load("header.html");
     shuffleListNodes(images);// shuffle to different grid arrangement everytime
    
     document.querySelector('.picture_grid_container').style.display = "block";
@@ -87,7 +94,7 @@ function addDataSource(images){ //add data-src and image's path to img tag for L
         let str = srcAttri.split(".");
         // let str2 = str[str.length-2].split("/");
 
-        srcAttri = "." + str[str.length-2] + "-HD." + str[str.length-1]; //append HD to the name for HD quality photos
+        srcAttri = ".." + str[str.length-2] + "-HD." + str[str.length-1]; //append HD to the name for HD quality photos
         // console.log(str);
         // console.log(srcAttri);
         image.dataset.src = srcAttri; 
@@ -522,6 +529,34 @@ function gridAnimation(delay){
     
 
 
+
+function includeHTML() {
+    var z, i, elmnt, file, xhttp;
+    /*loop through a collection of all HTML elements:*/
+    z = document.getElementsByTagName("*");
+    for (i = 0; i < z.length; i++) {
+      elmnt = z[i];
+      /*search for elements with a certain atrribute:*/
+      file = elmnt.getAttribute("w3-include-html");
+      if (file) {
+        /*make an HTTP request using the attribute value as the file name:*/
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4) {
+            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+            /*remove the attribute, and call this function once more:*/
+            elmnt.removeAttribute("w3-include-html");
+            includeHTML();
+          }
+        }      
+        xhttp.open("GET", file, true);
+        xhttp.send();
+        /*exit the function:*/
+        return;
+      }
+    }
+  };
 
 // //CSSgrid.io
 
