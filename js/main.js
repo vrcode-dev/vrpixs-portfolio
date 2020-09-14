@@ -20,10 +20,9 @@ window.addEventListener('load', function() {
 
             if (content.style.maxHeight){
                 content.style.maxHeight = null;
-                content.style.visibility  = "hidden"
+
 
             } else {
-                content.style.visibility  = "visible"
                 content.style.maxHeight = content.scrollHeight + "px";   
             } 
         });

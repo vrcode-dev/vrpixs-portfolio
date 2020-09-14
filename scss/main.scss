@@ -104,6 +104,7 @@ header {
     display: flex  ;
     // grid-auto-flow: column;
     justify-content: space-around;
+  
 
     padding: 2rem 1rem 0 1rem;
     color: $text-primary;
@@ -125,9 +126,16 @@ header {
     }
 
     .main_nav_container{ 
-    display: flex;   
+    display: flex;  
+    height: 3rem; 
+     
+ 
+
+
+   
         
         .main_nav_item {
+          
             display:flex;
             justify-content: center;
             z-index: 2;
@@ -141,12 +149,14 @@ header {
             padding-top: 0.5rem;
             font-size: 1rem;
             margin: 0 1rem;
-            // border: 2px solid red;
+        
+            
 
             .dropdown {
                 display:flex;
                 flex-direction: column;
                 align-items: center;
+
 
                 & > a::after {
                     content:"\f078";
@@ -162,7 +172,7 @@ header {
                 .sub_nav_item_container {
                     // display:none->block and then fade opacity, and in reverse, fade opacity and then display:block->none.
                   visibility: hidden;
-
+                  overflow:visible;
                   background-color: black;
                   padding: 0.5rem 1rem;
                   opacity: 0;
