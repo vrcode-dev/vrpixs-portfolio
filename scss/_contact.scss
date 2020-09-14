@@ -1,0 +1,128 @@
+
+@mixin flex-center-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-img {
+
+    min-height: 300px;
+    // width: 600px;
+   
+    // z-index: -1;
+    // float: right;
+    // -webkit-shape-margin: 3.5em;
+    // shape-margin: 3.5em;
+    // -webkit-shape-outside: circle(2.5em);
+    // shape-outside: circle(2.5em);
+   
+    float: right;
+    // margin: 2rem;
+    margin-top: -10.5rem;
+    margin-right: -10rem; 
+    shape-outside:polygon(606px 228px, 615px -112px, 350px -70px, 313px 68px, 270px 365px, 208px 416px, 218px 527px, 288px 593px, 380px 674px, 670px 772px);
+    shape-margin: 2rem;
+
+    img {
+    max-height: 100vh;
+    object-fit: cover;
+    }
+
+}
+
+
+.contact-main {
+        display: block;
+        padding-top: 2rem;
+    
+        p {
+            font-weight: 300;
+            font-size: 1.3rem;
+            margin-block-start: 2rem;
+            // margin-block-end: 2rem;
+        }
+
+}
+
+
+div.contact-content{
+    width: 90%;
+    margin: auto;
+
+ h1 {
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 2rem;
+    // padding-bottom:2rem;
+    margin-block-start: 5rem;
+    margin-block-end: 1rem;
+
+
+    }
+}
+
+div.contact-main h1 {
+    font-size: 2.5rem;
+}
+
+
+.contact-info {
+    flex-flow: wrap;
+    // max-width: 100%;
+    display: flex;
+ 
+    height: 250px;
+    max-width:100%;
+    flex-wrap: wrap;
+    // justify-content: space-between ;
+    
+ 
+    .contact-details {
+    //    padding-right: 10rem;
+    //    justify-self: flex-end;
+    margin-right:2rem;
+
+        ul {
+            // @include flex-center-row;
+            width: 100%;
+            margin: auto;
+
+            li{
+            color: white;
+            font-size: 1rem;
+            font-family: 'Roboto';
+
+
+     
+            padding-right: 1rem;
+            padding-bottom: 0.5rem;
+            
+        }
+    }
+    }
+    
+    .contact-socials {
+      
+    height: 250px;
+        // margin-right: 5rem;
+        // max-width: 100%;
+      
+        ul li{
+            margin-right: 0.5rem;
+            color: white;
+            display: inline;
+            font-size: 1rem;
+            font-family: 'Roboto';
+            font-weight: 300;
+
+            &::before {
+                content: "|";
+                padding-right: 0.5rem;
+            }
+        }
+    }
+}
+
+
+

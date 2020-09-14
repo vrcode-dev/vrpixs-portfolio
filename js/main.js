@@ -1,11 +1,43 @@
 // ** EXECUTION AREA ** //
 
+
+includeHTML();//link header file to other pages using lib by w3school
+
 window.addEventListener('load', function() {
+
+
+
+//**** Collapsible MENU ****/
+//   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
+    let coll = document.getElementsByClassName("collapsible");
+
+    for (i = 0; i < coll.length; i++) {
+
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            console.log("hi");
+            var content = this.nextElementSibling;
+
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+                content.style.visibility  = "hidden"
+
+            } else {
+                content.style.visibility  = "visible"
+                content.style.maxHeight = content.scrollHeight + "px";   
+            } 
+        });
+    }
+
+
+    // test();
+    
     let images = document.querySelectorAll(".picture_grid_imgs img");
     let lastestOpenedImg;
 
-    // let listNodes = document.querySelector('ul.picture_grid_imgs');
 
+    // let listNodes = document.querySelector('ul.picture_grid_imgs');
+    // document.getElementById("header-placeholder").innerHTML.load("header.html");
     shuffleListNodes(images);// shuffle to different grid arrangement everytime
    
     document.querySelector('.picture_grid_container').style.display = "block";
@@ -289,6 +321,8 @@ function viewOptions(){//make option clicked selected
 ///******* End viewOptions *********///
 
 
+
+
 //fullscreen api
 function launchIntoFullscreen(element) {
     if(element.requestFullscreen) {
@@ -457,31 +491,31 @@ function prevSlide(){
     // https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
   
 
-    function watchForHover() {
-    // lastTouchTime is used for ignoring emulated mousemove events
-    let lastTouchTime = 0
+//     function watchForHover() {
+//     // lastTouchTime is used for ignoring emulated mousemove events
+//     let lastTouchTime = 0
   
-    function enableHover() {
-      if (new Date() - lastTouchTime < 500) return
-      document.body.classList.add('hasHover')
-    }
+//     function enableHover() {
+//       if (new Date() - lastTouchTime < 500) return
+//       document.body.classList.add('hasHover')
+//     }
   
-    function disableHover() {
-      document.body.classList.remove('hasHover')
-    }
+//     function disableHover() {
+//       document.body.classList.remove('hasHover')
+//     }
   
-    function updateLastTouchTime() {
-      lastTouchTime = new Date()
-    }
+//     function updateLastTouchTime() {
+//       lastTouchTime = new Date()
+//     }
   
-    document.addEventListener('touchstart', updateLastTouchTime, true)
-    document.addEventListener('touchstart', disableHover, true)
-    document.addEventListener('mousemove', enableHover, true)
+//     document.addEventListener('touchstart', updateLastTouchTime, true)
+//     document.addEventListener('touchstart', disableHover, true)
+//     document.addEventListener('mousemove', enableHover, true)
   
-    enableHover()
-  }
+//     enableHover()
+//   }
   
-  watchForHover()
+//   watchForHover()
 
 //   ** END HOVER DETECTION ** //
 
@@ -520,6 +554,40 @@ function gridAnimation(delay){
     // )    
 };
     
+
+
+
+function includeHTML() {
+    var z, i, elmnt, file, xhttp;
+    /*loop through a collection of all HTML elements:*/
+    z = document.getElementsByTagName("*");
+    for (i = 0; i < z.length; i++) {
+      elmnt = z[i];
+      /*search for elements with a certain atrribute:*/
+      file = elmnt.getAttribute("w3-include-html");
+      if (file) {
+        /*make an HTTP request using the attribute value as the file name:*/
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4) {
+            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+            /*remove the attribute, and call this function once more:*/
+            elmnt.removeAttribute("w3-include-html");
+            includeHTML();
+          }
+        }      
+        xhttp.open("GET", file, true);
+        xhttp.send();
+        /*exit the function:*/
+        return;
+      }
+    }
+  };
+
+
+
+
 
 
 
