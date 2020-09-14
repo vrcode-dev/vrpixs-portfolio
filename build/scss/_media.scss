@@ -125,6 +125,7 @@
                     font-size: 3rem;
                     padding: 0;
                     color:$hover-highlight;
+                    overflow: hidden;
 
                 //     .dropdown:active{
                   
@@ -159,13 +160,12 @@
                         .sub_nav_item_container{
                             background-color: transparent;
                             transform: translateY(0);
-                            visibility: hidden;
+                            visibility: visible;
                             opacity: 1;
-                            overflow: hidden;
+                            // overflow: hidden;
                             border-top: 0px;
-                            padding-top: 1rem;
-                            
-                            margin-left: 6rem;
+                            padding-top: 2rem;
+                            margin-left: 5.8rem;
                            
                             max-height: 0;
                             transition: max-height 0.2s ease-out;
@@ -251,17 +251,25 @@
         margin-left: 0rem;;
         .main_nav_container{
             padding: 2rem 0rem;
+
         
             .main_nav_item{
                 font-size: 1.5rem;
                 margin: 1rem 0rem;
                 padding:0;
 
+
+
                 .dropdown .sub_nav_item_container  {
                     margin-left: 4.5rem;
                     margin-top: 0rem;
+                    padding-top: 1.5rem;
+                    padding-bottom: 0rem;
+
 
                     li { font-size: 1rem;
+
+
                         padding-bottom: 1.5rem;
                     }
                 } 
