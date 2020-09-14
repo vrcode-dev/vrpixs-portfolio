@@ -1,15 +1,40 @@
 // ** EXECUTION AREA ** //
 
-// (function() {
-//     document.getElementById("#header-placeholder").innerHTML.load("header.html");
-//   })();
-includeHTML();
+
+includeHTML();//link header file to other pages using lib by w3school
 
 window.addEventListener('load', function() {
+
+
+
+//**** Collapsible MENU ****/
+//   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
+    let coll = document.getElementsByClassName("collapsible");
+
+    for (i = 0; i < coll.length; i++) {
+
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            console.log("hi");
+            var content = this.nextElementSibling;
+
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+                content.style.visibility  = "hidden"
+
+            } else {
+                content.style.visibility  = "visible"
+                content.style.maxHeight = content.scrollHeight + "px";   
+            } 
+        });
+    }
+
+
+    // test();
+    
     let images = document.querySelectorAll(".picture_grid_imgs img");
     let lastestOpenedImg;
 
-    
 
     // let listNodes = document.querySelector('ul.picture_grid_imgs');
     // document.getElementById("header-placeholder").innerHTML.load("header.html");
@@ -94,7 +119,7 @@ function addDataSource(images){ //add data-src and image's path to img tag for L
         let str = srcAttri.split(".");
         // let str2 = str[str.length-2].split("/");
 
-        srcAttri = ".." + str[str.length-2] + "-HD." + str[str.length-1]; //append HD to the name for HD quality photos
+        srcAttri = "." + str[str.length-2] + "-HD." + str[str.length-1]; //append HD to the name for HD quality photos
         // console.log(str);
         // console.log(srcAttri);
         image.dataset.src = srcAttri; 
@@ -296,6 +321,8 @@ function viewOptions(){//make option clicked selected
 ///******* End viewOptions *********///
 
 
+
+
 //fullscreen api
 function launchIntoFullscreen(element) {
     if(element.requestFullscreen) {
@@ -464,31 +491,31 @@ function prevSlide(){
     // https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
   
 
-    function watchForHover() {
-    // lastTouchTime is used for ignoring emulated mousemove events
-    let lastTouchTime = 0
+//     function watchForHover() {
+//     // lastTouchTime is used for ignoring emulated mousemove events
+//     let lastTouchTime = 0
   
-    function enableHover() {
-      if (new Date() - lastTouchTime < 500) return
-      document.body.classList.add('hasHover')
-    }
+//     function enableHover() {
+//       if (new Date() - lastTouchTime < 500) return
+//       document.body.classList.add('hasHover')
+//     }
   
-    function disableHover() {
-      document.body.classList.remove('hasHover')
-    }
+//     function disableHover() {
+//       document.body.classList.remove('hasHover')
+//     }
   
-    function updateLastTouchTime() {
-      lastTouchTime = new Date()
-    }
+//     function updateLastTouchTime() {
+//       lastTouchTime = new Date()
+//     }
   
-    document.addEventListener('touchstart', updateLastTouchTime, true)
-    document.addEventListener('touchstart', disableHover, true)
-    document.addEventListener('mousemove', enableHover, true)
+//     document.addEventListener('touchstart', updateLastTouchTime, true)
+//     document.addEventListener('touchstart', disableHover, true)
+//     document.addEventListener('mousemove', enableHover, true)
   
-    enableHover()
-  }
+//     enableHover()
+//   }
   
-  watchForHover()
+//   watchForHover()
 
 //   ** END HOVER DETECTION ** //
 
@@ -557,6 +584,12 @@ function includeHTML() {
       }
     }
   };
+
+
+
+
+
+
 
 // //CSSgrid.io
 

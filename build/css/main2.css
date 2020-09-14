@@ -1,0 +1,58 @@
+.collapsible {
+    cursor: pointer;
+    width: 100%;
+
+    text-align: left;
+    outline: none;
+    font-size: 1rem;
+
+  }
+  
+  .content {
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }
+
+ nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+     display: flex;
+     width: 100vw;
+     height: 100vh;
+     visibility: visible;
+ }    
+ .main_nav_container {
+         background-color: black;
+         position: relative;
+         top: 0;
+        
+         flex-direction: column;
+         width: 100%;
+         padding: 5rem 5rem 5rem 2rem;
+    }
+     
+      
+.main_nav_container li {
+display: block;
+}
+    
+.main_nav_container  .main_nav_item {
+            width: 100%;
+            margin: 0;
+            justify-content: flex-start;
+            font-size: 2rem;
+            padding: 0 0 6rem 0;
+}
+            nav .main_nav_container       .dropdown {
+                display:flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width:100%;
+            }
+        
+            
+         
