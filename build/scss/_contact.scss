@@ -103,15 +103,18 @@ div.contact-main h1 {
 }
 
 @media screen and (max-width:1000px){
-    #header header{
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    min-height: 100%;
-    overflow-x:hidden;
-    //fix this??
-}
+    // #header header{
+    // position: absolute;
+    // display: block;
+    // bottom: 0;
+    // width: 100%;
+
+
+  
+    // overflow:hidden;
+    //fix this?? maybe try 100vh on main_nav_item?
+
+// }
 
 div.body-content{
     margin: 0rem;

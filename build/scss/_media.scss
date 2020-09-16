@@ -49,6 +49,10 @@
         z-index: 1;
     }
  
+    header .view_options{
+        margin: 0rem;
+       
+    }
     .buttons{
         button#prev, button#next {
         z-index:2;
@@ -64,19 +68,22 @@
     }
     
     header .brand_wrapper{
-        position: absolute;
-        top: 0rem;
-        left: 0;
-        margin-top: 2rem;
+        position: relative;
+        margin: 0;
+        margin-left: 3rem;
         width: max-content;
     }
 
+    // #header header {
+    //     justify-content: ;
+    // }
     nav { 
         opacity: 0;
+        width: 0;
         transition: opacity 0.6s ease-in-out;
     }
 
-    header nav .main_nav_container{
+    header nav ul.main_nav_container{
         display: none;
         // margin-left: 5rem;;
         

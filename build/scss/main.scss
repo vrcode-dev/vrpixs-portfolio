@@ -76,6 +76,7 @@ list-style: none;
 
 body{
     background-color: black;
+    overflow-x:hidden;
 
 }
 
@@ -95,19 +96,30 @@ p {
 
 
 }
-
-header {
-    position: fixed;
+#header header {
+    position: absolute;
     top: 0;
+    left:0;
     z-index: 3;
     width: 100%;
     display: flex  ;
+ 
     // grid-auto-flow: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    // #header header{
+    //     position: absolute;
+    //     display: block;
+    //     bottom: 0;
+    //     width: 100%;
   
 
     padding: 2rem 1rem 0 1rem;
     color: $text-primary;
+
+}
+
+ header {
+   
 
 
     &::after {
@@ -171,7 +183,7 @@ header {
 
                 .sub_nav_item_container {
                     // display:none->block and then fade opacity, and in reverse, fade opacity and then display:block->none.
-                  visibility: hidden;
+                //   visibility: hidden;
                   overflow:visible;
                   background-color: black;
                   padding: 0.5rem 1rem;
