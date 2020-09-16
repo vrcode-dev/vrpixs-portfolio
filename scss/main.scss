@@ -119,9 +119,7 @@ p {
 }
 
  header {
-   
-
-
+     
     &::after {
         display: block;
         content: "";
@@ -366,8 +364,9 @@ p {
     visibility: visible;
 }
 
-
-
+.view_options2 {
+    display: none;
+}
 
 .view_options {
     position: relative;
@@ -379,11 +378,13 @@ p {
     width: fit-content;
     height: fit-content;
     cursor: pointer;
+    display: none;
 
     li.selected {
         color: $hover-highlight;
         cursor: pointer;      
     }
+    // li {display:none}
 }
 
 
