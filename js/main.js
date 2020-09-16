@@ -203,6 +203,7 @@ function viewOptions(){//make option clicked selected
          viewOpt[1].classList.remove(active);
          viewOpt[0].classList.add(active);
          gridAnimation(10);
+
         
 
       })
