@@ -10,7 +10,7 @@ window.addEventListener('load', function() {
 //**** Collapsible MENU ****/
 //   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
     let coll = document.getElementsByClassName("collapsible");
-
+    console.log(coll);
     for (i = 0; i < coll.length; i++) {
 
         coll[i].addEventListener("click", function() {
@@ -45,7 +45,14 @@ window.addEventListener('load', function() {
 
     images.forEach(image => {observer.observe(image);}) //lazyload
 
-    viewOptions();
+
+    //only display viewoption when it's homepage    
+    if(window.location.href == "https://www.vrpixs.com" || window.location.href == "http://www.vrpixs.com" ) {
+        
+        document.querySelector('.view_options').style.display = "flex";
+        viewOptions();
+    }
+
 
     if (isTablet()) gridAnimation(100);
     else gridAnimation(30);
