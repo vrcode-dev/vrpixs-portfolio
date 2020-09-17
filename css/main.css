@@ -630,6 +630,10 @@ body {
   overflow-x: hidden;
 }
 
+#main-photogrid {
+  overflow-x: hidden;
+}
+
 p {
   color: white;
   font-size: 1rem;
@@ -651,7 +655,7 @@ p {
   top: 0;
   left: 0;
   z-index: 3;
-  width: 100%;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -663,22 +667,18 @@ p {
 }
 
 header::after {
-  display: block;
   content: "";
   position: absolute;
+  margin: 0;
   top: 0;
+  left: 0;
+  overflow: hidden;
   z-index: -1;
-  width: 150%;
-  height: 13rem;
-  margin: -5rem 0rem 0rem -3rem;
-  background: black;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), color-stop(60%, rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0)));
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0) 100%);
-  -webkit-filter: blur(20px);
-  -moz-filter: blur(20px);
-  -o-filter: blur(20px);
-  -ms-filter: blur(20px);
-  filter: blur(20px);
+  width: 100%;
+  height: 16rem;
+  margin-top: -5rem;
+  background: -webkit-gradient(linear, left top, left bottom, from(black), color-stop(7.9%, rgba(0, 0, 0, 0.94505)), color-stop(15.3%, rgba(0, 0, 0, 0.88294)), color-stop(22.2%, rgba(0, 0, 0, 0.81522)), color-stop(28.7%, rgba(0, 0, 0, 0.7426)), color-stop(34.8%, rgba(0, 0, 0, 0.66692)), color-stop(40.6%, rgba(0, 0, 0, 0.58891)), color-stop(46.2%, rgba(0, 0, 0, 0.50925)), color-stop(51.7%, rgba(0, 0, 0, 0.42866)), color-stop(57.2%, rgba(0, 0, 0, 0.34817)), color-stop(62.8%, rgba(0, 0, 0, 0.2693)), color-stop(68.7%, rgba(0, 0, 0, 0.19309)), color-stop(75.2%, rgba(0, 0, 0, 0.12126)), color-stop(82.6%, rgba(0, 0, 0, 0.05882)), color-stop(91.2%, rgba(0, 0, 0, 0.01457)), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.94505) 7.9%, rgba(0, 0, 0, 0.88294) 15.3%, rgba(0, 0, 0, 0.81522) 22.2%, rgba(0, 0, 0, 0.7426) 28.7%, rgba(0, 0, 0, 0.66692) 34.8%, rgba(0, 0, 0, 0.58891) 40.6%, rgba(0, 0, 0, 0.50925) 46.2%, rgba(0, 0, 0, 0.42866) 51.7%, rgba(0, 0, 0, 0.34817) 57.2%, rgba(0, 0, 0, 0.2693) 62.8%, rgba(0, 0, 0, 0.19309) 68.7%, rgba(0, 0, 0, 0.12126) 75.2%, rgba(0, 0, 0, 0.05882) 82.6%, rgba(0, 0, 0, 0.01457) 91.2%, rgba(0, 0, 0, 0));
 }
 
 header .main_nav_container {
@@ -886,17 +886,10 @@ header .main_nav_container > li:nth-last-child(3) {
   visibility: visible;
 }
 
-.view_options2 {
-  display: none;
-}
-
 .view_options {
   position: relative;
   margin: 0rem auto;
   padding-top: 0.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;

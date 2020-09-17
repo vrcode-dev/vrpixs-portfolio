@@ -10,7 +10,6 @@ window.addEventListener('load', function() {
 //**** Collapsible MENU ****/
 //   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
     let coll = document.getElementsByClassName("collapsible");
-    console.log(coll);
     for (i = 0; i < coll.length; i++) {
 
         coll[i].addEventListener("click", function() {
@@ -29,29 +28,72 @@ window.addEventListener('load', function() {
     }
 
 
-    // test();
     
     let images = document.querySelectorAll(".picture_grid_imgs img");
-    let lastestOpenedImg;
 
 
-    // let listNodes = document.querySelector('ul.picture_grid_imgs');
-    // document.getElementById("header-placeholder").innerHTML.load("header.html");
-    shuffleListNodes(images);// shuffle to different grid arrangement everytime
+
+    // test();//ok check this when wake up
+    // document.querySelector('.view_options').style.display = "flex";
+ 
+   // shuffle to different grid arrangement everytime
+   shuffleListNodes(images);
    
-    document.querySelector('.picture_grid_container').style.display = "block";
+ 
     determineOrientation(images);// add horizontal | vertical class to tags
     addDataSource(images); // add data-src and paths
 
+
+  
+
+
+    document.querySelector('.picture_grid_container').style.display = "block";
+    document.querySelector('.view_options').style.display = "flex";
+    viewOptions();
+    // (() => {//seems to not be neccessary
+    //     if((
+    //         window.location.href == "https://www.vrpixs.com" || 
+    //         window.location.href == "http://www.vrpixs.com" || 
+    //         window.location.href == "http://127.0.0.1:5501/build/" ) && 
+    //         !isMobile()) {
+
+    //         document.querySelector('.view_options').style.display = "flex";
+    //     }
+        
+    //     viewOptions();
+    //     })();
+        // else {  document.querySelector('.view_options').style.display = "none";
+        // }
+    //    
+    //          
+    //    )};
+  
+    let flag = true;
+    window.addEventListener('resize', () => {
+   
+        if (isMobile() && flag)  {//quick fix
+            // document.querySelector('.view_options').style.display = "none";
+            viewOptions(); 
+            flag = false; //only allow this to run once even the window keeps resizing
+        }
+         if (!isMobile() && !flag)  {
+            document.querySelector('.view_options').style.display = "block";
+            viewOptions(); //fix this later, make it return to gridview once out of mobile
+            flag = true;
+          
+         }
+
+        });
+
+
+
+     
+
     images.forEach(image => {observer.observe(image);}) //lazyload
 
+  
 
-    //only display viewoption when it's homepage    
-    if(window.location.href == "https://www.vrpixs.com" || window.location.href == "http://www.vrpixs.com" ) {
-        
-        document.querySelector('.view_options').style.display = "flex";
-        viewOptions();
-    }
+ 
 
 
     if (isTablet()) gridAnimation(100);
@@ -73,20 +115,6 @@ window.addEventListener('load', function() {
 
 
  // ***** END EXECUTION AREA **** ///
-
-
-
-//
-
-function tempFunc (img) {
-    img.onclick = function () {
-        let getImgURL = img.getAttribute("src"); 
-        let str = getImgURL.split(".");
-        getImgURL = "." + str[str.length-2] + "-HD." + str[str.length-1];
-    };
-
-}
-
 
 
 
@@ -142,7 +170,7 @@ function getOrientation(){
 
 function isMobile(){
     let isMobile = false
-    if (getOrientation() == "Portrait" && window.innerWidth < 480 || getOrientation() == "Landscape" && window.innerHeight < 480 ){
+    if (getOrientation() == "Portrait" && window.innerWidth < 599 || getOrientation() == "Landscape" && window.innerHeight < 599 ){
        isMobile = true;
     }
      return isMobile;//is mobile 
@@ -150,7 +178,7 @@ function isMobile(){
 
 function isTablet(){
     let isTablet = false
-    if (getOrientation() == "Portrait" && (window.innerWidth >= 480 && window.innerWidth < 900) || getOrientation() == "Landscape" && (window.innerHeight >= 480 && window.innerHeight < 900)){
+    if (getOrientation() == "Portrait" && (window.innerWidth >= 599 && window.innerWidth < 900) || getOrientation() == "Landscape" && (window.innerHeight >= 599 && window.innerHeight < 900)){
        isTablet = true;
     }
      return isTablet;//is mobile 
@@ -179,7 +207,6 @@ function viewOptions(){//make option clicked selected
 
     let viewOpt = document.querySelectorAll('.view_options li');
     let active = "selected";
-    let grid = document.querySelector('#grid_view');
     let fullscreen = document.querySelector('#fullscreen_view');  
     let slides = document.querySelectorAll('.picture_grid_imgs li');
     let slideButtons = document.querySelectorAll('.buttons button')
@@ -187,10 +214,18 @@ function viewOptions(){//make option clicked selected
     imgNodes = listNodes.children;
     
   
-    if (getOrientation() == "Landscape" || isTablet() || !isMobile()) viewOpt[0].classList.add(active); //not mobile
-    else  viewOpt[1].classList.add(active);//TODO make phone in fullscreen mode by default
+    if (viewOpt){
+        if (getOrientation() == "Landscape" || isTablet() || !isMobile()) viewOpt[0].classList.add(active); //not mobile
+        else  viewOpt[1].classList.add(active);//TODO make phone in fullscreen mode by default
+        screenSizeCheck();
+    }
+    else return;
+
+    if (isMobile()){
+        document.querySelector('.view_options').style.display = "none";
+    }
     
-    screenSizeCheck();
+
 
     for (let i = 0; i < viewOpt.length; i++) {
         viewOpt[i].addEventListener("click", function() {//make viewoption active when clicked
@@ -207,9 +242,11 @@ function viewOptions(){//make option clicked selected
       document.querySelector('.brand_wrapper').addEventListener("click", function(){//brand logo onclick
           
          gridView();
-         viewOpt[1].classList.remove(active);
-         viewOpt[0].classList.add(active);
-         gridAnimation(10);
+         if (viewOpt) { 
+            viewOpt[1].classList.remove(active);
+            viewOpt[0].classList.add(active);
+            gridAnimation(10);}
+       
 
         
 
@@ -217,7 +254,6 @@ function viewOptions(){//make option clicked selected
    }
 
     function screenSizeCheck() {        
-        // slidesTemp = document.querySelectorAll('.picture_grid_imgs li'); //copy the whole img then restore later when switching viewsOptions
         addSlides(slides); //add tags to all img
 
         if (fullscreen.classList.contains(active)) { // if fullscreen selected
@@ -235,15 +271,13 @@ function viewOptions(){//make option clicked selected
                 filterHorizontalImages(imgNodes).forEach (e => {
                     console.log("filter horizontal images");
                     listNodes.appendChild(e); 
-                    // console.log(e);
+
                 });
-                
                 
 
                 filterVerticalImages(imgNodes).forEach (e => {
                     console.log("remove vertical images");
                     listNodes.removeChild(e); 
-                    // console.log(e);
                 });
 
 
@@ -266,7 +300,7 @@ function viewOptions(){//make option clicked selected
                     // picture_grid_imgs.firstChild.classList.add('active'); //make the first pix active    
             }
 
-            auto = true; // auto scroll flag, globally declared
+            // auto = false; // auto scroll flag, globally declared
             if (auto) {
                 // Run next slide at interval time
                 slideInterval = setInterval(nextSlide, intervalTime);
@@ -282,7 +316,7 @@ function viewOptions(){//make option clicked selected
             gridView();
             // gridAnimation();
         
-            auto = true; //turn off auto scroll when not in fullscreen
+            // auto = true; //turn off auto scroll when not in fullscreen
             clearInterval(slideInterval);// ^^
         };
 
@@ -296,7 +330,7 @@ function viewOptions(){//make option clicked selected
 
         slideButtons.forEach( (e) => {//hide prev/next btns when in grid view
             e.style.display = 'none'; 
-            document.querySelector('.picture_grid_imgs').style.overflow = 'visible'; 
+            // document.querySelector('.picture_grid_imgs').style.overflow = 'visible'; 
         })  ; 
 
         slides.forEach (e => {
@@ -311,7 +345,7 @@ function viewOptions(){//make option clicked selected
         imgArrFiltered = imgArr.filter( vert => {
             return vert.className.includes("vertical")     
         });
-        console.log(imgArrFiltered);
+        // console.log(imgArrFiltered);
         return imgArrFiltered;
     }
  
@@ -321,7 +355,7 @@ function viewOptions(){//make option clicked selected
         imgArrFiltered = imgArr.filter( hor => {
             return hor.className.includes("horizontal")     
         });
-        console.log(imgArrFiltered);
+        // console.log(imgArrFiltered);
         return imgArrFiltered;
     }
 }
@@ -330,59 +364,59 @@ function viewOptions(){//make option clicked selected
 
 
 
-//fullscreen api
-function launchIntoFullscreen(element) {
-    if(element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if(element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if(element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen();
-    } else if(element.msRequestFullscreen) {
-      element.msRequestFullscreen();
-    }
-  }
+// //fullscreen api
+// function launchIntoFullscreen(element) {
+//     if(element.requestFullscreen) {
+//       element.requestFullscreen();
+//     } else if(element.mozRequestFullScreen) {
+//       element.mozRequestFullScreen();
+//     } else if(element.webkitRequestFullscreen) {
+//       element.webkitRequestFullscreen();
+//     } else if(element.msRequestFullscreen) {
+//       element.msRequestFullscreen();
+//     }
+//   }
 
 
-  function exitFullscreen() {
-    if(document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if(document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if(document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    }
-  }
+//   function exitFullscreen() {
+//     if(document.exitFullscreen) {
+//       document.exitFullscreen();
+//     } else if(document.mozCancelFullScreen) {
+//       document.mozCancelFullScreen();
+//     } else if(document.webkitExitFullscreen) {
+//       document.webkitExitFullscreen();
+//     }
+//   }
 
-  function requestFullScreen() {
+//   function requestFullScreen() {
 
-    var el = document.body;
+//     var el = document.body;
   
-    // Supports most browsers and their versions.
-    var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
-    || el.mozRequestFullScreen || el.msRequestFullScreen;
+//     // Supports most browsers and their versions.
+//     var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
+//     || el.mozRequestFullScreen || el.msRequestFullScreen;
   
-    if (requestMethod) {
+//     if (requestMethod) {
   
-      // Native full screen.
-      requestMethod.call(el);
+//       // Native full screen.
+//       requestMethod.call(el);
   
-    } else if (typeof window.ActiveXObject !== "undefined") {
+//     } else if (typeof window.ActiveXObject !== "undefined") {
   
-      // Older IE.
-      var wscript = new ActiveXObject("WScript.Shell");
+//       // Older IE.
+//       var wscript = new ActiveXObject("WScript.Shell");
   
-      if (wscript !== null) {
-        wscript.SendKeys("{F11}");
-      }
-    }
-  }
+//       if (wscript !== null) {
+//         wscript.SendKeys("{F11}");
+//       }
+//     }
+//   }
 //*** Full Screen picture_grid_imgs ***// 
 
 // const slides = document.querySelectorAll('.picture_grid_imgs li');
 const next = document.querySelector('#next');
 const prev = document.querySelector('#prev');
-var auto = false; // Auto scroll
+var auto = true; // Auto scroll
 const intervalTime = 4000; 
 let slideInterval;
 
