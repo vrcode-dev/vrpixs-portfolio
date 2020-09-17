@@ -80,6 +80,8 @@ body{
 
 }
 
+#main-photogrid { overflow-x:hidden;}
+// #header header { overflow-x:hidden;}
 p {
     color: white;
     font-size: 1rem;
@@ -97,11 +99,14 @@ p {
 
 }
 #header header {
+    // border: 2px solid red;
     position: absolute;
+    // overflow-x:hidden;
     top: 0;
     left:0;
     z-index: 3;
-    width: 100%;
+    width: 100vw;
+    // height
     display: flex  ;
  
     // grid-auto-flow: column;
@@ -121,17 +126,35 @@ p {
  header {
      
     &::after {
-        display: block;
         content: "";
         position: absolute;
-        top: 0;
+        margin:0;
+        top:0;
+        left:0;
+        overflow:hidden;
         z-index: -1;
-        width: 150%;
-        height: 13rem;
-        margin: -5rem 0rem 0rem -3rem;  
-        background: rgb(0,0,0);
-        background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%); 
-         @include blur(20px);
+        width: 100%;
+
+        height: 16rem;
+        margin-top: -5rem;
+        // background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%); 
+        background: linear-gradient(to bottom,    hsl(0, 0%, 0%),
+        hsla(0, 0%, 0%, 0.94505) 7.9%,
+        hsla(0, 0%, 0%, 0.88294) 15.3%,
+        hsla(0, 0%, 0%, 0.81522) 22.2%,
+        hsla(0, 0%, 0%, 0.7426) 28.7%,
+        hsla(0, 0%, 0%, 0.66692) 34.8%,
+        hsla(0, 0%, 0%, 0.58891) 40.6%,
+        hsla(0, 0%, 0%, 0.50925) 46.2%,
+        hsla(0, 0%, 0%, 0.42866) 51.7%,
+        hsla(0, 0%, 0%, 0.34817) 57.2%,
+        hsla(0, 0%, 0%, 0.2693) 62.8%,
+        hsla(0, 0%, 0%, 0.19309) 68.7%,
+        hsla(0, 0%, 0%, 0.12126) 75.2%,
+        hsla(0, 0%, 0%, 0.05882) 82.6%,
+        hsla(0, 0%, 0%, 0.01457) 91.2%,
+        hsla(0, 0%, 0%, 0))
+        //  @include blur(20px);
     
     }
 
@@ -364,15 +387,11 @@ p {
     visibility: visible;
 }
 
-.view_options2 {
-    display: none;
-}
 
 .view_options {
     position: relative;
     margin: 0rem auto;
     padding-top: 0.5rem;    
-    display: flex;
     justify-content: center;
     min-width: 2.5rem;
     width: fit-content;
@@ -384,7 +403,6 @@ p {
         color: $hover-highlight;
         cursor: pointer;      
     }
-    // li {display:none}
 }
 
 
