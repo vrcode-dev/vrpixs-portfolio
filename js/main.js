@@ -7,6 +7,7 @@ window.addEventListener('load', function() {
     
 
     let view = document.querySelector('.view_options');
+    if(view) view.style.display = "flex"; 
     if (isHomepage()){ //when on homepage
        if(view) view.style.display = "flex"; //if view not null, work around uncaught error null
        
@@ -21,7 +22,7 @@ window.addEventListener('load', function() {
     else   {
         if(view) view.style.display = "none";
     }
-    viewOptions();
+    // viewOptions();//this should be commented out
     // let brand = document.getElementsByClassName('brand_wrapper');
 
     // if(brand){
