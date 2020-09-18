@@ -4,20 +4,21 @@ includeHTML();//link header file to other pages using lib by w3school
 // document.querySelector('.view_options').style.display = "flex";
 window.addEventListener('load', function() {
     let images = document.querySelectorAll(".picture_grid_imgs img");
-    let view = document.querySelector('.view_options');
     
+
+    let view = document.querySelector('.view_options');
     if (isHomepage()){ //when on homepage
-        view.style.display = "flex"; //if view not null, work around uncaught error null
+       if(view) view.style.display = "flex"; //if view not null, work around uncaught error null
        
 
-        shuffleListNodes(images); // shuffle to different grid arrangement everytime
-        determineOrientation(images);// add horizontal | vertical class to tags
-        addDataSource(images); // add data-src and paths
-        viewOptions();
+       shuffleListNodes(images);  // shuffle to different grid arrangement everytime
+       determineOrientation(images);// add horizontal | vertical class to tags
+       addDataSource(images); // add data-src and paths
+       viewOptions();
     
     }    
     else   {
-         view.style.display = "none";
+        if(view) view.style.display = "none";
     }
 
     // let brand = document.getElementsByClassName('brand_wrapper');
@@ -183,9 +184,11 @@ function isHomepage() {//seems to not be neccessary, and doesnt work accross bro
 
     let homepage =false
     if(
-        window.location == "https://www.vrpixs.com/" || 
-        window.location == "http://www.vrpixs.com/" || 
-        window.location == "http://127.0.0.1:5501/build/" )  homepage = true;
+        window.location == "https://www.vrpixs.com" || 
+        window.location == "http://www.vrpixs.com" || 
+        window.location == "www.vrpixs.com" || 
+        window.location == "http://127.0.0.1:5501/build/" || 
+        window.location == "http://192.168.0.182:5501/build/" )  homepage = true;
        
        
     return homepage; 
