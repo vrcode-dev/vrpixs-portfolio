@@ -397,7 +397,8 @@ p {
     width: fit-content;
     height: fit-content;
     cursor: pointer;
-    display: none;
+    display: flex;
+    visibility: hidden;
 
     li.selected {
         color: $hover-highlight;

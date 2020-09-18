@@ -1,16 +1,16 @@
 // ** EXECUTION AREA ** //
 includeHTML();//link header file to other pages using lib by w3school
 
+
 // document.querySelector('.view_options').style.display = "flex";
 window.addEventListener('load', function() {
     let images = document.querySelectorAll(".picture_grid_imgs img");
     
 
     let view = document.querySelector('.view_options');
-    if(view) view.style.display = "flex"; 
     if (isHomepage()){ //when on homepage
-       if(view) view.style.display = "flex"; //if view not null, work around uncaught error null
-       
+    //  view.style.display = "flex"; //if view not null, work around uncaught error null
+        if(view) view.style.visibility = "visible";
 
        shuffleListNodes(images);  // shuffle to different grid arrangement everytime
        determineOrientation(images);// add horizontal | vertical class to tags
@@ -20,9 +20,9 @@ window.addEventListener('load', function() {
     
     }    
     else   {
-        if(view) view.style.visibility = "hidden";
+       if(view) view.style.visibility = "hidden";
     }
-    viewOptions();//this should be commented out
+    // viewOptions();//this should be commented out
     // let brand = document.getElementsByClassName('brand_wrapper');
 
     // if(brand){
@@ -53,7 +53,7 @@ window.addEventListener('load', function() {
         }
 
         if (!isMobile() && notMobileFlag && isHomepage())  {
-            document.querySelector('.view_options').style.display = "flex";
+            document.querySelector('.view_options').style.visibility = "visible";
             document.querySelector('.picture_grid_imgs').style.overflow = 'visible';
             //   hideSlides(slides);
             // slides.forEach (e => {
