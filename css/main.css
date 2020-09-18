@@ -901,9 +901,7 @@ header .main_nav_container > li:nth-last-child(3) {
   height: -moz-fit-content;
   height: fit-content;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
 }
 
 .view_options li.selected {
