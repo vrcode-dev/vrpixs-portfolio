@@ -282,7 +282,7 @@ function viewOptions(){//make option clicked selected
     else return;
 
     if (isMobile()){
-        document.querySelector('.view_options').style.display = "none";
+        document.querySelector('.view_options').style.visibility = "hidden";
     }
     
 
