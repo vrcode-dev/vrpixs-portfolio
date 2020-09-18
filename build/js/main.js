@@ -14,13 +14,14 @@ window.addEventListener('load', function() {
        shuffleListNodes(images);  // shuffle to different grid arrangement everytime
        determineOrientation(images);// add horizontal | vertical class to tags
        addDataSource(images); // add data-src and paths
+      
        viewOptions();
     
     }    
     else   {
         if(view) view.style.display = "none";
     }
-
+    // viewOptions();
     // let brand = document.getElementsByClassName('brand_wrapper');
 
     // if(brand){
@@ -184,6 +185,9 @@ function isHomepage() {//seems to not be neccessary, and doesnt work accross bro
 
     let homepage =false
     if(
+        window.location == "https://www.vrpixs.com/" || 
+        window.location == "http://www.vrpixs.com/" || 
+        window.location == "www.vrpixs.com/" || 
         window.location == "https://www.vrpixs.com" || 
         window.location == "http://www.vrpixs.com" || 
         window.location == "www.vrpixs.com" || 
@@ -250,7 +254,6 @@ function makeMenuCollapsible(){
 
 
 ///******* ViewOptions *********///
-
 function viewOptions(){//make option clicked selected
 
     let viewOpt = document.querySelectorAll('.view_options li');
