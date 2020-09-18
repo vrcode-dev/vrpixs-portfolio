@@ -3,99 +3,66 @@
 
 includeHTML();//link header file to other pages using lib by w3school
 
+
 window.addEventListener('load', function() {
-
-
-
-//**** Collapsible MENU ****/
-//   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
-    let coll = document.getElementsByClassName("collapsible");
-    for (i = 0; i < coll.length; i++) {
-
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            console.log("hi");
-            var content = this.nextElementSibling;
-
-            if (content.style.maxHeight){
-                content.style.maxHeight = null;
-
-
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";   
-            } 
-        });
-    }
-
-
-    
     let images = document.querySelectorAll(".picture_grid_imgs img");
 
+    if (isHomepage){ //when on homepage
+        document.querySelector('.view_options').style.display = "flex";
 
+        shuffleListNodes(images); // shuffle to different grid arrangement everytime
+        determineOrientation(images);// add horizontal | vertical class to tags
+        addDataSource(images); // add data-src and paths
+        viewOptions();
+    
+    }    
+    else  document.querySelector('.view_options').style.display = "none";
+    
+    
 
-    // test();//ok check this when wake up
-    // document.querySelector('.view_options').style.display = "flex";
- 
-   // shuffle to different grid arrangement everytime
-   shuffleListNodes(images);
-   
- 
-    determineOrientation(images);// add horizontal | vertical class to tags
-    addDataSource(images); // add data-src and paths
+    // when resizing from desktop to mobile, switch view when isMobile
+    let isMobileFlag = true;
+    let notMobileFlag =true
+    window.addEventListener('resize', () => {  
 
-
-  
-
-
-    document.querySelector('.picture_grid_container').style.display = "block";
-    document.querySelector('.view_options').style.display = "flex";
-    viewOptions();
-    // (() => {//seems to not be neccessary
-    //     if((
-    //         window.location.href == "https://www.vrpixs.com" || 
-    //         window.location.href == "http://www.vrpixs.com" || 
-    //         window.location.href == "http://127.0.0.1:5501/build/" ) && 
-    //         !isMobile()) {
-
-    //         document.querySelector('.view_options').style.display = "flex";
-    //     }
-        
-    //     viewOptions();
-    //     })();
-        // else {  document.querySelector('.view_options').style.display = "none";
-        // }
-    //    
-    //          
-    //    )};
-  
-    let flag = true;
-    window.addEventListener('resize', () => {
-   
-        if (isMobile() && flag)  {//quick fix
+        if (isMobile() && isMobileFlag && isHomepage())  {//quick fix
             // document.querySelector('.view_options').style.display = "none";
             viewOptions(); 
-            flag = false; //only allow this to run once even the window keeps resizing
+            isMobileFlag = false; //only allow this to run once even the window keeps resizing
+            notMobileFlag = true;
         }
-         if (!isMobile() && !flag)  {
-            document.querySelector('.view_options').style.display = "block";
-            viewOptions(); //fix this later, make it return to gridview once out of mobile
-            flag = true;
-          
-         }
 
-        });
+        if (!isMobile() && notMobileFlag && isHomepage())  {
+            document.querySelector('.view_options').style.display = "flex";
+            document.querySelector('.picture_grid_imgs').style.overflow = 'visible';
+            //   hideSlides(slides);
+            // slides.forEach (e => {
+            //     listNodes.appendChild(e); 
+            //     // console.log(e);
+            // })
+            // viewOpt[0].classList.add(active); //not mobile
+            // viewOpt[1].classList.remove(active);
+            
+            // viewOptions(); //fix this later, make it return to gridview once out of mobile
+            
+            console.log("noMobile");
+            isMobileFlag = true;
+            notMobileFlag = false;
+
+        //TODO, need to display all images in the grid when transition to gridview on resize, not just vertical ones, 
+        // i.e: need to make copy of the whole grid and append each node back when on grid view, save cooy to an array and append
+        
+        }
 
 
+        
+    });  
 
-     
-
+    makeMenuCollapsible();
     images.forEach(image => {observer.observe(image);}) //lazyload
 
-  
 
- 
-
-
+    //different grid animation timing based on device
     if (isTablet()) gridAnimation(100);
     else gridAnimation(30);
     
@@ -151,11 +118,8 @@ function addDataSource(images){ //add data-src and image's path to img tag for L
     
         let srcAttri = image.getAttribute("src"); 
         let str = srcAttri.split(".");
-        // let str2 = str[str.length-2].split("/");
 
         srcAttri = "." + str[str.length-2] + "-HD." + str[str.length-1]; //append HD to the name for HD quality photos
-        // console.log(str);
-        // console.log(srcAttri);
         image.dataset.src = srcAttri; 
     })    
 };
@@ -181,7 +145,7 @@ function isTablet(){
     if (getOrientation() == "Portrait" && (window.innerWidth >= 599 && window.innerWidth < 900) || getOrientation() == "Landscape" && (window.innerHeight >= 599 && window.innerHeight < 900)){
        isTablet = true;
     }
-     return isTablet;//is mobile 
+     return isTablet;//is tablet 
 }
 
 function determineOrientation(images){ //add horizontal or vertical class to element based on img's orientation
@@ -197,12 +161,75 @@ function determineOrientation(images){ //add horizontal or vertical class to ele
     else return
     })
 };
+
+function isHomepage() {//seems to not be neccessary, and doesnt work accross browsers esp mobile, need to check alternatives
+
+    let homepage =false
+    if(
+        window.location == "https://www.vrpixs.com/" || 
+        window.location == "http://www.vrpixs.com/" || 
+        window.location == "http://127.0.0.1:5501/build/" )  homepage = true;
+       
+       
+    return homepage; 
+         
+};
+
+
+function includeHTML() { //by w3school
+    var z, i, elmnt, file, xhttp;
+    /*loop through a collection of all HTML elements:*/
+    z = document.getElementsByTagName("*");
+    for (i = 0; i < z.length; i++) {
+      elmnt = z[i];
+      /*search for elements with a certain atrribute:*/
+      file = elmnt.getAttribute("w3-include-html");
+      if (file) {
+        /*make an HTTP request using the attribute value as the file name:*/
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4) {
+            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+            /*remove the attribute, and call this function once more:*/
+            elmnt.removeAttribute("w3-include-html");
+            includeHTML();
+          }
+        }      
+        xhttp.open("GET", file, true);
+        xhttp.send();
+        /*exit the function:*/
+        return;
+      }
+    }
+  };
+
+//**** Collapsible MENU ****/
+//   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
+function makeMenuCollapsible(){
+    let coll = document.getElementsByClassName("collapsible");
+    for (i = 0; i < coll.length; i++) {
+    
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            console.log("hi");
+            var content = this.nextElementSibling;
+    
+            if (content.style.maxHeight){
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";   
+            } 
+        });
+    }
+}
+    //**** END Collapsible MENU ****/
 /**** END UTILITY FUNCTIONS *****/
 
 
 
-///******* ViewOptions *********///
 
+///******* ViewOptions *********///
 function viewOptions(){//make option clicked selected
 
     let viewOpt = document.querySelectorAll('.view_options li');
@@ -210,13 +237,21 @@ function viewOptions(){//make option clicked selected
     let fullscreen = document.querySelector('#fullscreen_view');  
     let slides = document.querySelectorAll('.picture_grid_imgs li');
     let slideButtons = document.querySelectorAll('.buttons button')
-    listNodes = document.querySelector('ul.picture_grid_imgs');
+    let listNodes = document.querySelector('ul.picture_grid_imgs');
     imgNodes = listNodes.children;
     
   
     if (viewOpt){
-        if (getOrientation() == "Landscape" || isTablet() || !isMobile()) viewOpt[0].classList.add(active); //not mobile
-        else  viewOpt[1].classList.add(active);//TODO make phone in fullscreen mode by default
+        if (getOrientation() == "Landscape" || isTablet() || !isMobile()) {
+            viewOpt[0].classList.add(active); //not mobile
+            viewOpt[1].classList.remove(active)
+            gridView();
+        }
+        else  {
+            viewOpt[1].classList.add(active);//TODO make phone in fullscreen mode by default
+            viewOpt[0].classList.remove(active);
+            gridView();
+        }
         screenSizeCheck();
     }
     else return;
@@ -236,21 +271,9 @@ function viewOptions(){//make option clicked selected
             screenSizeCheck();
 
       });
+      
 
       
-      
-      document.querySelector('.brand_wrapper').addEventListener("click", function(){//brand logo onclick
-          
-         gridView();
-         if (viewOpt) { 
-            viewOpt[1].classList.remove(active);
-            viewOpt[0].classList.add(active);
-            gridAnimation(10);}
-       
-
-        
-
-      })
    }
 
     function screenSizeCheck() {        
@@ -411,8 +434,8 @@ function viewOptions(){//make option clicked selected
 //       }
 //     }
 //   }
-//*** Full Screen picture_grid_imgs ***// 
 
+//*** Full Screen picture_grid_imgs ***// 
 // const slides = document.querySelectorAll('.picture_grid_imgs li');
 const next = document.querySelector('#next');
 const prev = document.querySelector('#prev');
@@ -560,10 +583,10 @@ function prevSlide(){
 
 //   ** END HOVER DETECTION ** //
 
-// ** END UTILITY FUNCTIONS ** //
 
 
-  //anime.js lib animation
+
+// **** anime.js lib animation *****
 
 function gridAnimation(delay){  
 
@@ -595,36 +618,10 @@ function gridAnimation(delay){
     // )    
 };
     
+// ****  END anime.js lib animation *****
 
 
 
-function includeHTML() {
-    var z, i, elmnt, file, xhttp;
-    /*loop through a collection of all HTML elements:*/
-    z = document.getElementsByTagName("*");
-    for (i = 0; i < z.length; i++) {
-      elmnt = z[i];
-      /*search for elements with a certain atrribute:*/
-      file = elmnt.getAttribute("w3-include-html");
-      if (file) {
-        /*make an HTTP request using the attribute value as the file name:*/
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4) {
-            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-            /*remove the attribute, and call this function once more:*/
-            elmnt.removeAttribute("w3-include-html");
-            includeHTML();
-          }
-        }      
-        xhttp.open("GET", file, true);
-        xhttp.send();
-        /*exit the function:*/
-        return;
-      }
-    }
-  };
 
 
 
