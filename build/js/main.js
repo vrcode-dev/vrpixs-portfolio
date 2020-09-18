@@ -4,12 +4,10 @@ includeHTML();//link header file to other pages using lib by w3school
 // document.querySelector('.view_options').style.display = "flex";
 window.addEventListener('load', function() {
     let images = document.querySelectorAll(".picture_grid_imgs img");
-    // document.querySelector('.view_options').style.display = "flex";
-
-
-    var view = document.querySelector('.view_options');
+    let view = document.querySelector('.view_options');
+    
     if (isHomepage()){ //when on homepage
-       if(view) view.style.display = "flex"; //if view not null, work around uncaught error null
+        view.style.display = "flex"; //if view not null, work around uncaught error null
        
 
         shuffleListNodes(images); // shuffle to different grid arrangement everytime
@@ -19,9 +17,23 @@ window.addEventListener('load', function() {
     
     }    
     else   {
-        if(view) view.style.display = "none";
+         view.style.display = "none";
     }
+
+    // let brand = document.getElementsByClassName('brand_wrapper');
+
+    // if(brand){
+    //     brand.onclick = () => {
+    //         if(view) view.style.display = "flex";
+    //         viewOptions();
+    //         console.log("brand");
+
+    //     }
+    // }
     
+    // function click(){
+    //    alert("click");
+    // }
     
 
     // when resizing from desktop to mobile, switch view when isMobile
@@ -213,7 +225,7 @@ function includeHTML() { //by w3school
 //   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
 function makeMenuCollapsible(){
     let coll = document.getElementsByClassName("collapsible");
-    for (i = 0; i < coll.length; i++) {
+    for (let i = 0; i < coll.length; i++) {
     
         coll[i].addEventListener("click", function() {
             this.classList.toggle("active");
@@ -235,6 +247,7 @@ function makeMenuCollapsible(){
 
 
 ///******* ViewOptions *********///
+
 function viewOptions(){//make option clicked selected
 
     let viewOpt = document.querySelectorAll('.view_options li');

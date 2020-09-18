@@ -397,7 +397,7 @@ p {
     width: fit-content;
     height: fit-content;
     cursor: pointer;
-    display: flex;
+    display: none;
 
     li.selected {
         color: $hover-highlight;
@@ -412,7 +412,6 @@ p {
     right: 0;
     display: flex;
     justify-content: flex-end;
-    // z-index: 100;
     color:$text-primary; 
 
     &::before {
