@@ -21,7 +21,7 @@ window.addEventListener('load', function() {
     else   {
         if(view) view.style.display = "none";
     }
-    // viewOptions();
+    viewOptions();
     // let brand = document.getElementsByClassName('brand_wrapper');
 
     // if(brand){
