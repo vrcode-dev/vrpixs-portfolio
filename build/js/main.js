@@ -1,14 +1,16 @@
 // ** EXECUTION AREA ** //
-
-
 includeHTML();//link header file to other pages using lib by w3school
 
-
+// document.querySelector('.view_options').style.display = "flex";
 window.addEventListener('load', function() {
     let images = document.querySelectorAll(".picture_grid_imgs img");
+    // document.querySelector('.view_options').style.display = "flex";
 
-    if (isHomepage){ //when on homepage
-        document.querySelector('.view_options').style.display = "flex";
+
+    var view = document.querySelector('.view_options');
+    if (isHomepage()){ //when on homepage
+       if(view) view.style.display = "flex"; //if view not null, work around uncaught error null
+       
 
         shuffleListNodes(images); // shuffle to different grid arrangement everytime
         determineOrientation(images);// add horizontal | vertical class to tags
@@ -16,7 +18,9 @@ window.addEventListener('load', function() {
         viewOptions();
     
     }    
-    else  document.querySelector('.view_options').style.display = "none";
+    else   {
+        if(view) view.style.display = "none";
+    }
     
     
 
@@ -30,6 +34,7 @@ window.addEventListener('load', function() {
             viewOptions(); 
             isMobileFlag = false; //only allow this to run once even the window keeps resizing
             notMobileFlag = true;
+            console.log("isMobile");
         }
 
         if (!isMobile() && notMobileFlag && isHomepage())  {
@@ -45,7 +50,7 @@ window.addEventListener('load', function() {
             
             // viewOptions(); //fix this later, make it return to gridview once out of mobile
             
-            console.log("noMobile");
+            console.log("notMobile");
             isMobileFlag = true;
             notMobileFlag = false;
 
