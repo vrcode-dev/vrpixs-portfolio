@@ -20,9 +20,9 @@ window.addEventListener('load', function() {
     
     }    
     else   {
-        if(view) view.style.display = "none";
+        if(view) view.style.visibility = "hidden";
     }
-    // viewOptions();//this should be commented out
+    viewOptions();//this should be commented out
     // let brand = document.getElementsByClassName('brand_wrapper');
 
     // if(brand){
