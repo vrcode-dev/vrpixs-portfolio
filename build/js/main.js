@@ -1,16 +1,18 @@
-// ** EXECUTION AREA ** //
+
+var viewOpt = document.querySelectorAll('.view_options li');
+console.log(viewOpt);
 includeHTML();//link header file to other pages using lib by w3school
-
-
 // document.querySelector('.view_options').style.display = "flex";
 window.addEventListener('load', function() {
+    // ** EXECUTION AREA ** //
+
     let images = document.querySelectorAll(".picture_grid_imgs img");
     
 
     let view = document.querySelector('.view_options');
     if (isHomepage()){ //when on homepage
     //  view.style.display = "flex"; //if view not null, work around uncaught error null
-        if(view) view.style.visibility = "visible";
+        if(view) view.style.display = "flex";
 
        shuffleListNodes(images);  // shuffle to different grid arrangement everytime
        determineOrientation(images);// add horizontal | vertical class to tags
@@ -20,7 +22,7 @@ window.addEventListener('load', function() {
     
     }    
     else   {
-       if(view) view.style.visibility = "hidden";
+       if(view) view.style.display = "none";
     }
     // viewOptions();//this should be commented out
     // let brand = document.getElementsByClassName('brand_wrapper');
@@ -53,7 +55,7 @@ window.addEventListener('load', function() {
         }
 
         if (!isMobile() && notMobileFlag && isHomepage())  {
-            document.querySelector('.view_options').style.visibility = "visible";
+            document.querySelector('.view_options').style.display = "flex";
             document.querySelector('.picture_grid_imgs').style.overflow = 'visible';
             //   hideSlides(slides);
             // slides.forEach (e => {
@@ -86,7 +88,6 @@ window.addEventListener('load', function() {
     if (isTablet()) gridAnimation(100);
     else gridAnimation(30);
     
-
   
     //TODO
 
@@ -98,12 +99,12 @@ window.addEventListener('load', function() {
 
     // make lazyload for thumbnails too, rn only work for HD ones
     // fix when switch viewoption then next&prev buttons in fullscreen need to wait for 1st active pix to traverse the the previous active pix before switch, 
- });   
+ 
 
 
  // ***** END EXECUTION AREA **** ///
 
-
+});  
 
 // ***** Lazyloading images ***** ///
 
@@ -186,14 +187,16 @@ function isHomepage() {//seems to not be neccessary, and doesnt work accross bro
 
     let homepage =false
     if(
-        window.location == "https://www.vrpixs.com/" || 
-        window.location == "http://www.vrpixs.com/" || 
+        window.location == "https://www.vrpixs.com/index.html" || 
+        window.location == "http://www.vrpixs.com/index.html" || 
         window.location == "www.vrpixs.com/" || 
         window.location == "https://www.vrpixs.com" || 
         window.location == "http://www.vrpixs.com" || 
         window.location == "www.vrpixs.com" || 
-        window.location == "http://127.0.0.1:5501/build/" || 
-        window.location == "http://192.168.0.182:5501/build/" )  homepage = true;
+        window.location == "http://127.0.0.1:5501/build/" ||
+        window.location == "http://127.0.0.1:5501/build/index.html" || 
+        window.location == "http://192.168.0.182:5501/build/" ||
+        window.location == "http://192.168.0.182:5501/build/index.html" )  homepage = true;
        
        
     return homepage; 
@@ -266,10 +269,10 @@ function viewOptions(){//make option clicked selected
     imgNodes = listNodes.children;
     
   
-    if (viewOpt){
+    if (viewOpt || viewOpt != 'undefined'){
         if (getOrientation() == "Landscape" || isTablet() || !isMobile()) {
             viewOpt[0].classList.add(active); //not mobile
-            viewOpt[1].classList.remove(active)
+            viewOpt[1].classList.remove(active);
             gridView();
         }
         else  {
@@ -277,12 +280,12 @@ function viewOptions(){//make option clicked selected
             viewOpt[0].classList.remove(active);
             gridView();
         }
-        screenSizeCheck();
+        checkViewOpt();
     }
     else return;
 
     if (isMobile()){
-        document.querySelector('.view_options').style.visibility = "hidden";
+        document.querySelector('.view_options').style.display = "none";
     }
     
 
@@ -293,15 +296,11 @@ function viewOptions(){//make option clicked selected
             let current = document.getElementsByClassName(active);
             current[0].className = current[0].className.replace(active, "");
             this.className +=  " " + active;   
-            screenSizeCheck();
-
+            checkViewOpt();
       });
-      
-
-      
    }
 
-    function screenSizeCheck() {        
+    function checkViewOpt() {        
         addSlides(slides); //add tags to all img
 
         if (fullscreen.classList.contains(active)) { // if fullscreen selected
@@ -690,3 +689,5 @@ function gridAnimation(delay){
 
 
 // var geometry = justifiedLayout([0.5, 1.5, 1, 1.8, 0.4, 0.7, 0.9, 1.1, 1.7, 2, 2.1])
+
+
