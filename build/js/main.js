@@ -3,6 +3,7 @@ var viewOpt = document.querySelectorAll('.view_options li');
 console.log(viewOpt);
 includeHTML();//link header file to other pages using lib by w3school
 // document.querySelector('.view_options').style.display = "flex";
+
 window.addEventListener('load', function() {
     // ** EXECUTION AREA ** //
 
