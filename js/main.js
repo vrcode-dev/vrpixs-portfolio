@@ -190,9 +190,11 @@ function isHomepage() {//seems to not be neccessary, and doesnt work accross bro
     if(
         window.location == "https://www.vrpixs.com/index.html" || 
         window.location == "http://www.vrpixs.com/index.html" || 
-        window.location == "www.vrpixs.com/" || 
+        window.location == "https://www.vrpixs.com/" || 
+        window.location == "http://www.vrpixs.com/" || 
         window.location == "https://www.vrpixs.com" || 
         window.location == "http://www.vrpixs.com" || 
+        window.location == "www.vrpixs.com/" || 
         window.location == "www.vrpixs.com" || 
         window.location == "http://127.0.0.1:5501/build/" ||
         window.location == "http://127.0.0.1:5501/build/index.html" || 
