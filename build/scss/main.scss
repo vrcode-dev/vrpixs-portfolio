@@ -6,6 +6,7 @@
 @import 'fullscreen';
 @import 'media';
 @import 'contact';
+@import 'mansory';
 
 $text-primary: rgba(255, 255, 255, 0.7);
 $hover-highlight:  rgba(255, 255, 255, 1);
@@ -104,7 +105,7 @@ p {
     // overflow-x:hidden;
     top: 0;
     left:0;
-    z-index: 3;
+    z-index: 5;
     width: 100vw;
     // height
     display: flex  ;
@@ -171,7 +172,7 @@ p {
           
             display:flex;
             justify-content: center;
-            z-index: 2;
+            z-index: 3;
             // Neue Haas Grotesk Display Pro'
             font-family: 'Varela Round', Helvetica, Montserrat, sans-serif;
             font-size: 0.9rem;
@@ -189,6 +190,9 @@ p {
                 display:flex;
                 flex-direction: column;
                 align-items: center;
+                margin-bottom: -0.5rem;
+                
+
 
 
                 & > a::after {
@@ -199,17 +203,17 @@ p {
                     margin: auto;
                     width: 1rem;
                     height: 1rem;
+                    
                    
                 }
 
                 .sub_nav_item_container {
-                    // display:none->block and then fade opacity, and in reverse, fade opacity and then display:block->none.
-                //   visibility: hidden;
+                  visibility: hidden;
                   overflow:visible;
                   background-color: black;
                   padding: 0.5rem 1rem;
                   opacity: 0;
-                  transform: translateY(10%);
+                  transform: translateY(15%);
                   border-top: 1px solid $hover-highlight;
                   min-width: max-content;
                   font-size: 0.9rem;
@@ -319,7 +323,7 @@ p {
     &--line {
         display: flex;
         position: relative;
-        background: white;
+        background: $hover-highlight;
         height: 2px;
         width: 1.3rem;
         border-radius: 5px;
@@ -333,7 +337,7 @@ p {
             position: absolute;
             height: 100%;
             border-radius: 5px;
-            background: white;
+            background: $hover-highlight;
             transition: all 0.6s;
           
         }
@@ -397,7 +401,7 @@ p {
     width: fit-content;
     height: fit-content;
     cursor: pointer;
-    display: none;
+    display: flex;
     // visibility: visible;
 
     li.selected {
@@ -407,97 +411,51 @@ p {
 }
 
 
-.socials {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    justify-content: flex-end;
-    color:$text-primary; 
 
-    &::before {
-        content:"";
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        z-index: -1;
-        width: 12rem;
-        height: 4rem;
-        margin: 0 -2rem -2rem 0 ;
-    
-        background: rgb(0,0,0);
-        background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
-        @include blur(20px);
-    } 
 
-    ul {
-        @include flex-center-row;
-        position: absolute;
-        bottom: 0px; 
-        padding: 0.5rem 1rem;
-        height: fit-content;
-       
+// //*** INTRINSIC PLACE HOLDER ****//
+
+
+// .intrinsic {
+
+//     // Make sure <picture> wrapper is set to block
+//     // Max-width is governed by parentNode
+//     display: block;
   
-    
-        a{
-            padding: 0rem 0.5rem;  
-                   
-        }
-
-         a:hover {
-            color: $hover-highlight;
-        }
-
-
-
-    } 
-}
-
-
-
-//*** INTRINSIC PLACE HOLDER ****//
-
-
-.intrinsic {
-
-    // Make sure <picture> wrapper is set to block
-    // Max-width is governed by parentNode
-    display: block;
+//     // Intrinsic Ratio Box
+//     position: relative;
+//     height: 0;
+//     width: 100%;
+//     padding-top: 100%; // Default to square
   
-    // Intrinsic Ratio Box
-    position: relative;
-    height: 0;
-    width: 100%;
-    padding-top: 100%; // Default to square
+//     // Custom Styling
+//     background: #f0f0f0;
   
-    // Custom Styling
-    background: #f0f0f0;
+//     // Add as many ratios as you'd like...
+//     &.intrinsic--square {
+//       padding-top: 100%;
+//     }
   
-    // Add as many ratios as you'd like...
-    &.intrinsic--square {
-      padding-top: 100%;
-    }
+//     &.intrinsic--4x3 {
+//       padding-top: 75%;
+//     }
   
-    &.intrinsic--4x3 {
-      padding-top: 75%;
-    }
+//     &.intrinsic--16x9 {
+//       padding-top: 56.25%;
+//     }
+//     &.intrinsic--3x2 {
+//         padding-top: calc(2/3 * 100%);
+//       }
   
-    &.intrinsic--16x9 {
-      padding-top: 56.25%;
-    }
-    &.intrinsic--3x2 {
-        padding-top: calc(2/3 * 100%);
-      }
-  
-    // Force the item to fill the intrinsic box
-    .intrinsic-item {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
+//     // Force the item to fill the intrinsic box
+//     .intrinsic-item {
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 100%;
+//     }
+//   }
 
 
 
