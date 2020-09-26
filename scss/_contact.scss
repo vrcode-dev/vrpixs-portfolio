@@ -133,6 +133,7 @@ div.body-content{
     padding-bottom: 0;
 
     p {
+        clear: both;
         font-weight: 300;
         font-size: 1.3rem;
         margin-block-start: 2rem;
@@ -142,9 +143,9 @@ div.body-content{
         // display: none;
 
         width: 100%;
-       margin-top: -5rem;;
-       margin-right: -7rem;
-        shape-outside:polygon(606px 228px, 630px 13px, 366px 74px, 325px 217px, 408px 374px, 367px 506px, -60px 554px, -33px 764px, 645px 704px, 710px 948px);
+        margin-top: -5rem;;
+        margin-right: -6rem;
+        shape-outside:polygon(606px 228px, 630px 13px, 366px 74px, 299px 143px, 330px 338px, 356px 470px, -60px 554px, -33px 764px, 645px 704px, 710px 948px);
         shape-margin: 3rem;
     
         img {
@@ -166,10 +167,10 @@ div.contact-info h1{
     font-weight: 400;
 }
 div.contact-main h1 {
-    margin-top: 5rem;
+    margin-top: 7rem;
     margin-bottom: 5rem;
     font-weight: 100;
-    font-size: 4rem;
+    font-size: 3.5rem;
     text-align: end;
 }
 
@@ -188,10 +189,16 @@ div.contact-main h1 {
 
     }
     div.contact-main h1 {
-        margin: 0;
+        clear: both;
+        padding: 1rem 1rem 1rem 0rem;
+        margin: auto;
+    
          font-weight: 350;
-         font-size: 1.7rem;
-         text-align: start;
+         font-size: 2rem;
+         text-align: center;
+
+
+       
      }
 
 
@@ -199,14 +206,13 @@ div.contact-main h1 {
         display: block;
         padding: 0;
 
-       
 
-    
-    
         p {
             font-weight: 300;
             font-size: 1rem;
+           
         }
+        
 
         .about-img {
            float: left;

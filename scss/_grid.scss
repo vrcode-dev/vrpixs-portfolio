@@ -69,7 +69,8 @@ $hover-highlight:  rgba(255, 255, 255, 1);
             }
          
             &::after{
-                content: "\f424";
+                content: "";
+                // content: "\f424";
                 font-family: FontAwesome;
                 display:block;
                 position: absolute;
@@ -80,7 +81,7 @@ $hover-highlight:  rgba(255, 255, 255, 1);
                 color: $hover-highlight;
                 top: calc(50% - 0.5rem);
                 left: calc(50% - 0.5rem);
-                cursor: pointer;
+                // cursor: pointer;
   
                 opacity: 0;
 

@@ -31,13 +31,14 @@
 
             & > a::after {
                 transform: rotateX(180deg);
-                transition: all 0.2s ease-in-out;
+                transition: all 0.3s ease-in-out;
             }  
 
             .sub_nav_item_container {
                 visibility: visible;
                 opacity: 1;
-                transform: translateY(0%);
+                // display: block;
+                transform: translateY(5%);
                 transition: all 0.3s ease-in-out ;
             }
         }
