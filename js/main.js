@@ -233,7 +233,7 @@ function viewOptions(){//make option clicked selected
                 filterVerticalImages(imgNodes).forEach (e => {
                     console.log("filter vertical images");
                     listNodes.appendChild(e); 
-                    // images.forEach(image => {observer.observe(image);}) //lazyload
+                    images.forEach(image => {observer.observe(image);}) //lazyload
                 }); 
                 
                 // console.log(slides);
