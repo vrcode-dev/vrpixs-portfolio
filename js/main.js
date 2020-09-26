@@ -8,7 +8,7 @@ window.addEventListener('load', function() {
 
      
  
-    let images = document.querySelectorAll(".picture_grid_imgs img"); 
+    images = document.querySelectorAll(".picture_grid_imgs img"); 
     includeHTML();//link header file to other pages using lib by w3school
   
     if (checkPageLocation("homepage")){ //when on homepage
