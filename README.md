@@ -24,6 +24,6 @@ Photos are displayed dynamically depending on device orientation. For example, o
 
 ## Screenshots of other pages
 use Mansory grid library by David DeSandro
-<img src ="./build/resources/screenshots/screenshot-6.png">
-<img src ="./build/resources/screenshots/screenshot-7.png">
-<img src ="./build/resources/screenshots/screenshot-8.png">
+<img src ="./build/resources/screenshots/screenshot-6.jpg">
+<img src ="./build/resources/screenshots/screenshot-7.jpg">
+<img src ="./build/resources/screenshots/screenshot-8.jpg">
