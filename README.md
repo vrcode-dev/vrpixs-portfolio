@@ -21,3 +21,9 @@ Photos are displayed dynamically depending on device orientation. For example, o
 
 ## A homepage in a default slideshow-view on a mobile browser
 <img src ="./build/resources/screenshots/screenshot-5.png">
+
+## Screenshots of other pages
+use Mansory grid library by David DeSandro
+<img src ="./build/resources/screenshots/screenshot-6.png">
+<img src ="./build/resources/screenshots/screenshot-7.png">
+<img src ="./build/resources/screenshots/screenshot-8.png">
