@@ -31,21 +31,6 @@ $hover-highlight:  rgba(255, 255, 255, 1);
     filter: blur($val);
 }
 
-// @mixin hover-supported {  //disable hover for touch devices or screen < 768pxs,
-//     // ref: https://medium.com/@djpjgj/css-magic-pt-1-prevent-css-hover-on-touch-devices-56b3f8a44240
-
-//     @media not all and (pointer: coarse),  all and (min-width:1000px) {
-//         &:hover {
-//             @content;
-//         }
-//     }
-//     // @media  (min-width:1000px) {
-//     //     &:hover {
-//     //         @content;
-//     //     }
-//     // }
-  
-// }
 
 .center {
     width:100%;
@@ -100,32 +85,18 @@ p {
 
 }
 #header header {
-    // border: 2px solid red;
     position: absolute;
-    // overflow-x:hidden;
     top: 0;
     left:0;
     z-index: 5;
     width: 100vw;
-    // height
     display: flex  ;
- 
-    // grid-auto-flow: column;
     justify-content: space-between;
-    // #header header{
-    //     position: absolute;
-    //     display: block;
-    //     bottom: 0;
-    //     width: 100%;
-  
-
     padding: 2rem 1rem 0 1rem;
     color: $text-primary;
-
 }
 
- header {
-     
+ header { 
     &::after {
         content: "";
         position: absolute;
@@ -155,21 +126,13 @@ p {
         hsla(0, 0%, 0%, 0.05882) 82.6%,
         hsla(0, 0%, 0%, 0.01457) 91.2%,
         hsla(0, 0%, 0%, 0))
-        //  @include blur(20px);
-    
     }
 
     .main_nav_container{ 
     display: flex;  
     height: 3rem; 
-     
- 
-
-
-   
         
         .main_nav_item {
-          
             display:flex;
             justify-content: center;
             z-index: 3;
@@ -232,28 +195,6 @@ p {
             }
         }  
 
-        
-         // .main_nav_item .dropdown { //.main_nav_item dropdown hover
-        //     @include hover-supported() { //disable hover for touch devices
-        //         & > a{
-        //             color: $hover-highlight;
-        //         }
-
-        //         & > a::after {
-        //             transform: rotateX(180deg);
-        //             transition: all 0.2s ease-in-out;
-        //         }  
-
-        //         .sub_nav_item_container {
-        //             visibility: visible;
-        //             opacity: 1;
-        //             transform: translateY(0%);
-        //             transition: all 0.3s ease-in-out ;
-        //         }
-        //     }
-
-        // }
-
         .button {
             border: 2px solid rgba(255, 255, 255, 0.708);
             margin: 0 1rem;
@@ -267,7 +208,7 @@ p {
             background-color: white;  text-transform: uppercase;
             z-index: 100;
 
-             &:hover{  
+            &:hover{  
                 color: white;
                 background-color: transparent;
                 cursor: pointer;
@@ -284,7 +225,6 @@ p {
 }
 
 
-
 .brand_wrapper {
     font-family: Northwell;
     line-height: 70%;
@@ -292,24 +232,14 @@ p {
     align-items: center;
     margin: 0 5rem;
     justify-self: start;
-    // background-color: green;
     width: max-content;
-    // height: 100%;
     font-display: fallback;
     cursor: pointer;
     
-
      &:hover{
         color: $hover-highlight;
     }
-    // @include hover-supported(){
-    //     color: $hover-highlight;
-    // }
-   
 }
-
-
-
 
 .menu_icon {
     position: absolute;
@@ -332,7 +262,7 @@ p {
         justify-content: flex-end;
         transition: all 0.3s;
 
-        &::before, &:after {
+        &::before, &::after {
             content: "";
             position: absolute;
             height: 100%;
@@ -379,7 +309,6 @@ p {
             transform: rotateZ(-41deg);
         }
     }
-
 }
 
 
@@ -391,7 +320,6 @@ p {
     visibility: visible;
 }
 
-
 .view_options {
     position: relative;
     margin: 0rem auto;
@@ -402,7 +330,6 @@ p {
     height: fit-content;
     cursor: pointer;
     display: flex;
-    // visibility: visible;
 
     li.selected {
         color: $hover-highlight;
@@ -412,83 +339,8 @@ p {
 
 
 
-
-// //*** INTRINSIC PLACE HOLDER ****//
-
-
-// .intrinsic {
-
-//     // Make sure <picture> wrapper is set to block
-//     // Max-width is governed by parentNode
-//     display: block;
-  
-//     // Intrinsic Ratio Box
-//     position: relative;
-//     height: 0;
-//     width: 100%;
-//     padding-top: 100%; // Default to square
-  
-//     // Custom Styling
-//     background: #f0f0f0;
-  
-//     // Add as many ratios as you'd like...
-//     &.intrinsic--square {
-//       padding-top: 100%;
-//     }
-  
-//     &.intrinsic--4x3 {
-//       padding-top: 75%;
-//     }
-  
-//     &.intrinsic--16x9 {
-//       padding-top: 56.25%;
-//     }
-//     &.intrinsic--3x2 {
-//         padding-top: calc(2/3 * 100%);
-//       }
-  
-//     // Force the item to fill the intrinsic box
-//     .intrinsic-item {
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//       width: 100%;
-//       height: 100%;
-//     }
-//   }
-
-
-
-
-
-
-/* maintain position/ratio of the image so the content around it wont move around */
-
-/* .ratio {
-position: relative;
-display: block;
-}
-
-.ratio:before {
-content: '';
-display: block;
-width: 100%;
-padding-bottom: 66.67%; ratio of image x 100%
-background: red;
-}
-
-.ratio__content {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-} */
-
-/* -- ratio END --*/
-
-
 //**** UTILITIES ****//
+
 //scrollbar
 .content {
     /* These rules create an artificially confined space, so we get
@@ -513,19 +365,6 @@ height: 100%;
   }
 
 //end scrollbar
-
-
-
-// @font-face {
-//     font-family: 'Northwell';
-//     src: url('../fonts/Northwell.woff2') format('woff2'),
-//     font-weight: normal;
-//     font-style: normal;
-
-// }
-
-
-
 
 @font-face {
     font-family: "Northwell";
