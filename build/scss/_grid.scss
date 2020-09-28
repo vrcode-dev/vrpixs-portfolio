@@ -12,7 +12,6 @@ $hover-highlight:  rgba(255, 255, 255, 1);
 }
 
 // images titles
-
 // .picture_grid_imgs  {
 //     display:flex;
 //     flex-direction: column;
@@ -46,7 +45,6 @@ $hover-highlight:  rgba(255, 255, 255, 1);
             display:block;
             list-style: none;
             position: relative;
-            // transition: all 0.6s ease-in-out;
 
             &::before{ //img overlay
                 content: "";
@@ -58,8 +56,6 @@ $hover-highlight:  rgba(255, 255, 255, 1);
                 position: absolute;
                 background-color: black;
                 opacity: 0;
-
-
             }
 
             &:hover::before {
@@ -70,7 +66,6 @@ $hover-highlight:  rgba(255, 255, 255, 1);
          
             &::after{
                 content: "";
-                // content: "\f424";
                 font-family: FontAwesome;
                 display:block;
                 position: absolute;
@@ -81,8 +76,6 @@ $hover-highlight:  rgba(255, 255, 255, 1);
                 color: $hover-highlight;
                 top: calc(50% - 0.5rem);
                 left: calc(50% - 0.5rem);
-                // cursor: pointer;
-  
                 opacity: 0;
 
             }
@@ -99,19 +92,13 @@ $hover-highlight:  rgba(255, 255, 255, 1);
                 object-fit: cover;
                 // filter: grayscale(100%) contrast(110%) brightness(1.2);
                 opacity: 100%; //change this to 40%
-
-
-                
-             
             }   
 
-            
             img:hover {
                 filter: contrast(80%);
                 opacity: 50%;
                 transition: all 1s ease-in-out;
                
-
                 .expand {
                     width: 25px;
                     height: 25px;

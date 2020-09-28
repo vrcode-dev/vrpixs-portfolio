@@ -606,7 +606,6 @@ div.contact-main h1 {
 
 .grid {
   margin: auto;
-  margin-top: -1rem;
   width: 100%;
 }
 
@@ -621,6 +620,11 @@ div.contact-main h1 {
 .grid-sizer,
 .grid-item {
   width: 25%;
+}
+
+.blur img {
+  -webkit-filter: blur(5px) saturate(0);
+          filter: blur(5px) saturate(0);
 }
 
 .grid-item {
@@ -638,14 +642,13 @@ div.contact-main h1 {
   position: relative;
   display: block;
   margin-top: 9rem;
-  padding: 0rem 5rem;
-  padding-bottom: 3rem;
+  padding: 0 2rem;
   background-color: white;
 }
 
 .body-content-grid h1 {
   font-family: 'Roboto';
-  color: black;
+  color: wheat;
   font-size: 3rem;
   position: relative;
   display: block;
@@ -656,96 +659,38 @@ div.contact-main h1 {
   width: 100%;
 }
 
-.subheadings {
-  width: 100%;
+.body-content-grid .subheadings li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: black;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.subheadings li {
-  color: white;
-  color: white;
-  font-size: 1.5rem;
-  padding: 2rem;
-  font-family: "Roboto";
-  text-transform: uppercase;
-}
-
-.subheadings li:hover {
-  opacity: .75;
+  font: "Roboto";
 }
 
 @media screen and (max-width: 1000px) {
   .grid-sizer,
   .grid-item {
-    width: 33.333%;
-  }
-  .body-content-grid {
-    padding: 0rem 2rem;
-  }
-  .grid {
-    margin-top: -0.5rem;
+    width: 25%;
   }
   .grid-item {
     padding: 0.5rem;
-  }
-  .body-content-grid {
-    padding-bottom: 2rem;
   }
   .body-content-grid h1 {
     font-size: 2.5rem;
     padding: 1rem;
   }
-  .subheadings li {
-    font-size: 1.3rem;
-    padding: 1.5rem;
-    font-family: "Roboto";
-    text-transform: uppercase;
-  }
 }
 
 @media (max-width: 599px) {
-  .grid-sizer, .grid-item {
+  .grid-sizer,
+  .grid-item {
     width: 50%;
-  }
-  .grid-item2 {
-    width: 100%;
   }
   .grid-item {
     padding: 0.25rem;
   }
-  .grid {
-    margin-top: 0.5rem;
-  }
-  .body-content-grid {
-    padding: 1rem;
-  }
   .body-content-grid h1 {
     font-size: 2rem;
     padding: 0.5rem;
-  }
-  .subheadings {
-    padding: 0 2rem;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
-  .subheadings li {
-    width: 50%;
-    text-align: center;
-    font-size: 1rem;
-    padding: 1rem;
-    font-family: "Roboto";
-    text-transform: uppercase;
   }
 }
 
@@ -1063,6 +1008,28 @@ header .main_nav_container > li:nth-last-child(3) {
   cursor: pointer;
 }
 
+/* maintain position/ratio of the image so the content around it wont move around */
+/* .ratio {
+position: relative;
+display: block;
+}
+
+.ratio:before {
+content: '';
+display: block;
+width: 100%;
+padding-bottom: 66.67%; ratio of image x 100%
+background: red;
+}
+
+.ratio__content {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+} */
+/* -- ratio END --*/
 .content {
   /* These rules create an artificially confined space, so we get
        a scrollbar that we can hide. They are not directly involved in

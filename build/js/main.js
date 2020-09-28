@@ -1,27 +1,24 @@
 // ** EXECUTION AREA ** //
-
 window.addEventListener('load', function() {
- 
-    makeMenuCollapsible();
-    console.log("make collapsible");
+
+includeHTML();//link header file to other pages using lib by w3school
+
+  
     let listNodes = document.querySelector('ul.picture_grid_imgs');
 
      
  
     images = document.querySelectorAll(".picture_grid_imgs img"); 
-    includeHTML();//link header file to other pages using lib by w3school
+    
+   
   
     if (checkPageLocation("homepage")){ //when on homepage
-        // let listNodes = document.querySelector('ul.picture_grid_imgs');
+     
         shuffleListNodes(listNodes);  // shuffle to different grid arrangement everytime
-        allSlides = document.querySelectorAll('.picture_grid_imgs li'); //implicitly global declared
+        allSlides = document.querySelectorAll('.picture_grid_imgs li'); //implicitly global declared, stored images after shuffled
         determineOrientation(images);// add horizontal | vertical class to tags
         addDataSource(images); // add data-src and paths
-        viewOptions();
-
-        
-     
- 
+      
      // when resizing from desktop to mobile, switch view when isMobile
      let isMobileFlag = true;
      let notMobileFlag =true
@@ -57,10 +54,7 @@ window.addEventListener('load', function() {
 
 
 if (checkPageLocation("pAeriels")){
-    // let listNodes = document.querySelector('grid');
-
-    // shuffleListNodes(images); 
-
+    //custom js for Aerial page goes here
 }
 
 
@@ -79,24 +73,8 @@ if (document.body.classList == "mansory-grid"){
 }
 
 
- 
+
 });  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // ***** Lazyloading images ***** ///
@@ -124,8 +102,6 @@ function imageObserver(entries, observer) {
 // ***** END Lazyloading images *****
 
 
-
-
 ///******* ViewOptions *********///
 
 function viewOptions(){//make option clicked selected
@@ -137,8 +113,9 @@ function viewOptions(){//make option clicked selected
     let slideButtons = document.querySelectorAll('.buttons button')
     listNodes = document.querySelector('ul.picture_grid_imgs');
     imgNodes = listNodes.children;
-    
+    console.log(viewOpt);
 
+   
     if (getOrientation() == "Landscape" || isTablet() || !isMobile()) {
         viewOpt[0].classList.add(active); //not mobile
         viewOpt[1].classList.remove(active);
@@ -148,7 +125,6 @@ function viewOptions(){//make option clicked selected
     else  {
         viewOpt[1].classList.add(active);//TODO make phone in fullscreen mode by default
         viewOpt[0].classList.remove(active);
-        // gridView();
         console.log("fullscreen active");
     }
     checkViewOpt();
@@ -259,7 +235,6 @@ function viewOptions(){//make option clicked selected
         else { //not in fullscreen mode
             hideSlides(slides);
             gridView();
-            // gridAnimation();
         
             // auto = true; //turn off auto scroll when not in fullscreen
             clearInterval(slideInterval);// ^^
@@ -313,7 +288,6 @@ function addSlides(slides){
         slide.classList.add('slide_img');
         })   
         // console.log("slide_img added");
-
 };
 
 function hideSlides(slides){
@@ -380,19 +354,18 @@ function prevSlide(){
 
 
 //*** SHUFFLE PHOTO GRID ******/
-
 function shuffleListNodes (listNodes) {
- //not neccessary as listNodes will be declared globally prior to functino call
+    
 for (let i = listNodes.children.length; i >= 0; i--) {
     let shuffledNode = listNodes.children[Math.random() * i | 0]
     listNodes.appendChild(shuffledNode); //append || move the nodes in ul.picture_grid_imgs
     document.querySelector('.picture_grid_container').style.display = "block";
     
 }
-
 return listNodes;
 
 }
+
 
 // **** anime.js lib animation *****
 
@@ -415,7 +388,6 @@ function gridAnimation(delay){
     )    
   
 };
-
 // ****  END anime.js lib animation *****
 
 /**** UTILITY FUNCTIONS *****/
@@ -425,21 +397,13 @@ function addDataSource(images){ //add data-src and image's path to img tag for L
     images.forEach(image => {
     
         let srcAttri = image.getAttribute("src"); 
-        // let str = srcAttri.split(".");
-   
-
-        // srcAttri = "." + str[str.length-2] + "-HD." + str[str.length-1]; //append HD to the name for HD quality photos
-        // image.dataset.src = srcAttri; 
-        // image.dataset.src = srcAttri; 
-
-        let str2 = srcAttri.split("/");
-        [fileName,fileExtension] = str2[str2.length-1].split(".");
+        let str = srcAttri.split("/");
+        [fileName,fileExtension] = str[str.length-1].split(".");
         srcAttri = "./resources/photos/HD_photos/" + fileName + "-HD." + fileExtension;
         image.dataset.src = srcAttri; 
 
     })    
 };
-
 
 function getOrientation(){
     var orientation = window.innerWidth > window.innerHeight ? "Landscape" : "Portrait";
@@ -484,7 +448,6 @@ function checkPageLocation(pageID){
         sEvents, sPortraits, sGraduations, sMaternities, sCommercials,sPrints,
         bPostProcessing, bPhotoStories, bBeforeAfter, bTipsTricks,bGears,
         contactPage] = new Array(20).fill(false);
-
 
     switch(pageID){
         case "homepage":
@@ -603,14 +566,30 @@ function includeHTML() { //by w3school
         return;
       }
     }
+    
+    makeMenuCollapsible();
+
+    let viewOpt = document.querySelector(".view_options");
+    viewOpt.style.display=  "none";
+
+    if (checkPageLocation("homepage")){ //when on homepage
+        viewOpt.style.display = "flex"; //change .view_options from none to flex
+        viewOptions();
+    }
   };
 
 //**** Collapsible MENU ****/
 //   https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_collapsible_animate
+
 function makeMenuCollapsible(){
-    let coll = document.getElementsByClassName("collapsible");
+    let coll = document.querySelectorAll(".dropdown .collapsible");
+
+
+
+    console.log("coll" + coll.length);
+    console.log("makeMenuCollapsible running");
     for (let i = 0; i < coll.length; i++) {
-    
+        console.log("collapsible found " + i);
         coll[i].addEventListener("click", function() {
             this.classList.toggle("active");
             console.log("hi");
@@ -623,8 +602,8 @@ function makeMenuCollapsible(){
             } 
         });
     }
-}
-    //**** END Collapsible MENU ****/
+};
+//**** END Collapsible MENU ****/
 
 
 /**** END UTILITY FUNCTIONS *****/
@@ -633,142 +612,4 @@ function makeMenuCollapsible(){
 
 
 
-
-
-
-// //fullscreen api
-// function launchIntoFullscreen(element) {
-//     if(element.requestFullscreen) {
-//       element.requestFullscreen();
-//     } else if(element.mozRequestFullScreen) {
-//       element.mozRequestFullScreen();
-//     } else if(element.webkitRequestFullscreen) {
-//       element.webkitRequestFullscreen();
-//     } else if(element.msRequestFullscreen) {
-//       element.msRequestFullscreen();
-//     }
-//   }
-
-
-//   function exitFullscreen() {
-//     if(document.exitFullscreen) {
-//       document.exitFullscreen();
-//     } else if(document.mozCancelFullScreen) {
-//       document.mozCancelFullScreen();
-//     } else if(document.webkitExitFullscreen) {
-//       document.webkitExitFullscreen();
-//     }
-//   }
-
-//   function requestFullScreen() {
-
-//     var el = document.body;
-  
-//     // Supports most browsers and their versions.
-//     var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
-//     || el.mozRequestFullScreen || el.msRequestFullScreen;
-  
-//     if (requestMethod) {
-  
-//       // Native full screen.
-//       requestMethod.call(el);
-  
-//     } else if (typeof window.ActiveXObject !== "undefined") {
-  
-//       // Older IE.
-//       var wscript = new ActiveXObject("WScript.Shell");
-  
-//       if (wscript !== null) {
-//         wscript.SendKeys("{F11}");
-//       }
-//     }
-//   }
-
-
-
-//   *** DETECT HOVER ENABLED DEVICES *** //
-    // https://stackoverflow.com/questions/23885255/how-to-remove-ignore-hover-css-style-on-touch-devices
-  
-
-//     function watchForHover() {
-//     // lastTouchTime is used for ignoring emulated mousemove events
-//     let lastTouchTime = 0
-  
-//     function enableHover() {
-//       if (new Date() - lastTouchTime < 500) return
-//       document.body.classList.add('hasHover')
-//     }
-  
-//     function disableHover() {
-//       document.body.classList.remove('hasHover')
-//     }
-  
-//     function updateLastTouchTime() {
-//       lastTouchTime = new Date()
-//     }
-  
-//     document.addEventListener('touchstart', updateLastTouchTime, true)
-//     document.addEventListener('touchstart', disableHover, true)
-//     document.addEventListener('mousemove', enableHover, true)
-  
-//     enableHover()
-//   }
-  
-//   watchForHover()
-
-//   ** END HOVER DETECTION ** //
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
 // //CSSgrid.io
-
-// const gallery = document.querySelector('.gallery');
-// const overlay = document.querySelector('.overlay');
-// const overlayImage = overlay.querySelector('img');
-// const overlayClose = overlay.querySelector('.close');
-// function generateHTML([h, v]) {
-//   return `
-//     <div class="item h${h} v${v}">
-//       <img src="https://cdn.rawgit.com/jsfiddle/css-grid/master/20%20-%20CSS%20Grid%20Image%20Gallery/images/${randomNumber(12)}.jpg">
-//       <div class="item__overlay">
-//         <button>View →</button>
-//       </div>
-//     </div>
-//   `;
-// }
-// function randomNumber(limit) {
-//   return Math.floor(Math.random() * limit) + 1;
-// }
-// function handleClick(e) {
-//   const src = e.currentTarget.querySelector('img').src;
-//   overlayImage.src = src;
-//   overlay.classList.add('open');
-// }
-// function close() {
-//   overlay.classList.remove('open');
-// }
-// const digits = Array.from({ length: 50 }, () => [randomNumber(4), randomNumber(4)]);
-// const html = digits.map(generateHTML).join('');
-// gallery.innerHTML = html;
-// const items = document.querySelectorAll('.item');
-// items.forEach(item => item.addEventListener('click', handleClick));
-// overlayClose.addEventListener('click', close);
-
-
-// var geometry = justifiedLayout([0.5, 1.5, 1, 1.8, 0.4, 0.7, 0.9, 1.1, 1.7, 2, 2.1])
-
-

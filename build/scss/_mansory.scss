@@ -1,124 +1,164 @@
 .grid {
-    // top: 7rem;
-    // background: #DDD;
     margin: auto;
+    margin-top: -1rem;
     width:100%;
-    // gap: 2rem;
-    // background-color: white;
-  }
+}
   
-  /* clear fix */
-  .grid:after {
-    content: '';
-    display: block;
-    clear: both;
-  
-  }
-  
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
 
 
-  /* ---- .grid-item ---- */
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 25%;
+}
+
+.grid-item {
+
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+  margin: auto;
+}
+
+.body-content-grid{
+  position: relative;
+  display: block;
+  margin-top: 9rem;
+  padding: 0rem 5rem;
+  padding-bottom: 3rem;
+  background-color: white;
   
+  h1{
+        font-family: 'Roboto';
+        color: black;
+        font-size: 3rem;
+        position: relative;
+        display: block;
+        padding: 2rem;
+        text-transform: uppercase;
+        z-index: 3;
+        text-align:center;
+        width: 100%;
+    }
+}
+
+.subheadings{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  flex-wrap: wrap;
+  li {
+    color: white;
+    color: $hover-highlight;
+    font-size: 1.5rem;
+    padding: 2rem;
+    font-family: "Roboto";
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: .75;
+    }
+
+  }
+}
+
+@media screen and (max-width:1000px){
   .grid-sizer,
   .grid-item {
-    width: 25%;
+    width: 33.333%;
   }
-  
-  .grid-item {
-
-    padding: 1rem;
-  }
-  
-  .grid-item img {
-    display: block;
-    max-width: 100%;
-    margin: auto;
-
-   
-    // border: 1rem solid white;
-    
-  }
-
-  // header {background: black;
-  // height: 10rem;}
 
   .body-content-grid{
-    position: relative;
-    display: block;
-    margin-top: 9rem;
-    padding: 0 2rem;
-    background-color: white;
-    
+
+    padding: 0rem 2rem;
+  }
+
+  
+  .grid{
+    margin-top: -0.5rem;
+  }
+
+  .grid-item {
+    padding: 0.5rem;
+  }
+
+  .body-content-grid{   
+    padding-bottom: 2rem;
+
     h1{
-          font-family: 'Roboto';
-          color: black;
-          font-size: 3rem;
-          position: relative;
-          display: block;
-          padding: 2rem;
-          text-transform: uppercase;
-          z-index: 3;
-          text-align:center;
-          width: 100%;
+          font-size: 2.5rem;
+          padding: 1rem;
       }
   }
 
 
-  @media screen and (max-width:1000px){
-    .grid-sizer,
-    .grid-item {
-      width: 33.333%;
-    }
+  .subheadings{
+    li {
 
-    .grid-item {
-
-      padding: 0.5rem;
-    }
-    .body-content-grid{
-
-    
-      h1{
-            font-size: 2.5rem;
-            padding: 1rem;
-  
-        }
+      font-size: 1.3rem;
+      padding: 1.5rem;
+      font-family: "Roboto";
+      text-transform: uppercase;
     }
   }
+}
 
 
  
 
 
 @media (max-width:599px){ //phone
-  .grid-sizer,
-  .grid-item {
+  .grid-sizer, .grid-item {
     width: 50%
   }
 
-  .grid-item {
+  .grid-item2 {
+    width: 100%;
+  }
 
+  .grid-item {
     padding: 0.25rem;
   }
+
+  .grid{
+    margin-top: 0.5rem;
+  }
+
   .body-content-grid{
-    // padding: 1rem;
+    padding: 1rem;
     
     h1{
       font-size: 2rem;
       padding: 0.5rem;
+    }
+  }
 
+  .subheadings{
+    padding: 0 2rem;
+    justify-content: space-around;
+
+    li {
+      width: 50%;
+      text-align: center;
+      font-size: 1rem;
+      padding: 1rem;
+      font-family: "Roboto";
+      text-transform: uppercase;
+    }
   }
-  }
+
 }
-
-
-// body.mansory-grid {background-color: white;
-
-//   #header header {
-//   color: black;
-//   font: 600;
-//   &::after {
-//       content: "";
-//       background: transparent;
-//   }
-// }
-// }

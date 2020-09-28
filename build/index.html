@@ -9,110 +9,16 @@
   <link rel = "stylesheet" href="./css/main.css">
 
 <script defer src="./js/main.js"></script>
-<script defer src="./js/home.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
-<script defer src="https://kit.fontawesome.com/5ff81822ab.js" crossorigin="anonymous"></script>
-  
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+<script src="https://kit.fontawesome.com/5ff81822ab.js" crossorigin="anonymous"></script>
+
 </head>
 <body id = "homepage">
 
 <section id ="header">
-  <header>
-    <div class="brand_wrapper" >
-      <a href="/">vrpixs</a>
-    </div> 
-
-   <!-- **** menu button ***** -->
-    <input type="checkbox" id = "menu_btn">
-    <label for="menu_btn" class = "menu_icon">
-      <span class="menu_icon--line"></span>
-    </label>
-
-    
-    <div class="view_options">
-      <ul>
-        <li id = grid_view class="fas fa-th" alt="grid view"></li>
-        <li id = fullscreen_view class="fa fa-window-maximize" alt="fullscreen view"></li>
-      </ul>
+    <div w3-include-html="../../header.html"></div>
     </div>
-    
-    <nav id ="nav" >
-      <ul class = "main_nav_container ">
-
-        
-
-        <li class= "main_nav_item">
-          <div class="dropdown ">
-            <a class="collapsible">Photography</a>
-            <ul class= "sub_nav_item_container content">
-              <li><a href ="/site/photography/cities.html" >Cities</a></li>
-              <li><a href ="/site/photography/landscapes.html" >Landscapes</a></li>
-              <li><a href ="/site/photography/aerials.html" >Aerials</a></li>
-              <li><a href ="/site/photography/portraits.html" >Portraits</a></li>
-              <li><a href ="/site/photography/streets.html" >Streets</a></li>
-            </ul>
-          </div>
-          </div>
-        </li> 
-
-       
-        <li class="main_nav_item">
-          <div class="dropdown ">
-            <a class="collapsible">Services</a>
-            <ul class= "sub_nav_item_container content ">
-              <li><a href ="/site/services/events.html" >Events</a></li>
-              <li><a href ="/site/services/portraits.html" >Portraits</a></li>
-              <li><a href ="/site/services/graduations.html" >Graduations</a></li>
-              <li><a href ="/site/services/maternities.html" >Maternities</a></li>
-              <li><a href ="/site/services/commercials.html" >Commercials</a></li>
-              <li><a href ="/site/services/prints.html" >Prints</a></li>
-            </ul>
-        </div>
-        </li>
-        <!-- href="/site/blog/index.html" -->
-        <li class="main_nav_item">
-          <div class="dropdown">
-          <a class="collapsible">Blog</a>
-          <ul class= "sub_nav_item_container content">
-            <li><a href ="/site/blog/post-processing.html" >Post-processing</a></li>
-            <li><a href ="/site/blog/photo-stories.html" >Photo Stories</a></li>
-            <li><a href ="/site/blog/before-after.html" >Before / After</a></li>
-            <li><a href ="/site/blog/tips-tricks.html" >Tips & Tricks</a></li>
-            <li><a href ="/site/blog/gears.html" >Gears</a></li>
-          </ul>
-        </div>
-        </li> 
-        
-
-        <li><a href='/site/contact.html'><button class="button">Contact</button></a></li>
-    
-      
-
-
-
-
-      </ul>
-      
-  
-    </nav>
-    <!-- <div class = "socials">
-      <ul>
-          <li><a href="https://github.com/vrcode-dev/vrpixs-portfolio/tree/gh-pages" class="fas fa-code fa-lg"></a></li>
-          <li><a href="https://www.instagram.com/vrpixs/" class="fab fa-instagram fa-lg"></a></a></li>
-          <li><a href="mailto: vilaxayrthh@gmail.com" class="far fa-envelope fa-lg"></a></a></li>
-          <li><a href="https://github.com/vrcode-dev" class="fa fa-github fa-lg"></a></a></li>
-      </ul>
-    
-    </div> -->
-
-
-  </header>
-     
-
-
-  
 </section>
-
 
 <section id="main-photogrid">
 
@@ -199,75 +105,6 @@
     <li><img src="./resources/photos/VRZ_2017.jpg"></li>
     <li><img src="./resources/photos/VRZ_2092.jpg"></li>
     <li><img src="./resources/photos/VRZ_2102.jpg"></li>
-    <!--<li><img src="./resources/photos/VRZ_2189.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2226.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2362.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2381.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2384.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2415.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2484.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2544.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2561-Edit.jpg"></li>
-    <li><img src="./resources/photos/VRZ_2867.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3078.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3676.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3700.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3711.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3719.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3766-Pano-Edit.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3790.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3793.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3820.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3851.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3866.jpg"></li>
-    <li><img src="./resources/photos/VRZ_3990.jpg"></li>
-    <li><img src="./resources/photos/VRZ_4044.jpg"></li>
-    <li><img src="./resources/photos/VRZ_4072.jpg"></li>
-    <li><img src="./resources/photos/VRZ_4075.jpg"></li>
-    <li><img src="./resources/photos/VRZ_4317.jpg"></li>
-    <li><img src="./resources/photos/VRZ_4471-Edit.jpg"></li>
-    <li><img src="./resources/photos/VRZ_5220-Edit.jpg"></li>
-    <li><img src="./resources/photos/VRZ_5304.jpg"></li>
-    <li><img src="./resources/photos/VRZ_5697.jpg"></li>
-    <li><img src="./resources/photos/VRZ_5874.jpg"></li>
-    <li><img src="./resources/photos/VRZ_5927.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6059-HDR.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6195.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6307.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6395.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6547.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6561.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6606.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6665.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6688.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6698.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6722.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6741.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6782.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6908-HDR.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6915.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6929.jpg"></li>
-    <li><img src="./resources/photos/VRZ_6990.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7062.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7220.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7230.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7244.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7298.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7300.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7446-HDR-2.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7492.jpg"></li>
-    <li><img src="./resources/photos/VRZ_7526.jpg"></li>
-    <li><img src="./resources/photos/VRZ_8005.jpg"></li>
-    <li><img src="./resources/photos/VRZ_8098.jpg"></li>
-    <li><img src="./resources/photos/VRZ_8477-Edit.jpg"></li>
-    <li><img src="./resources/photos/VRZ_9070.jpg"></li>
-    <li><img src="./resources/photos/VRZ_9151-HDR-Edit.jpg"></li>
-    <li><img src="./resources/photos/VRZ_9343.jpg"></li>
-    <li><img src="./resources/photos/VRZ_9482.jpg"></li>
-    <li><img src="./resources/photos/VRZ_9745.jpg"></li> -->
-
-
-  
   
   </ul>
 
@@ -275,12 +112,10 @@
     <button id="prev"><i class="fas fa-arrow-left"></i></button>
     <button id="next"><i class="fas fa-arrow-right"></i></button>
   </div>
-</div>
+
+  </div>
 
 </section>
 
-
-
 </body>
-
 </html>
