@@ -233,6 +233,7 @@ function viewOptions(){//make option clicked selected
 
         }    
         else { //not in fullscreen mode
+            document.querySelector('.picture_grid_imgs').style.overflow = 'visible';
             hideSlides(slides);
             gridView();
         
