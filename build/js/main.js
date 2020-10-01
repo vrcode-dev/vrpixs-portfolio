@@ -18,7 +18,7 @@ includeHTML();//link header file to other pages using lib by w3school
         allSlides = document.querySelectorAll('.picture_grid_imgs li'); //implicitly global declared, stored images after shuffled
         determineOrientation(images);// add horizontal | vertical class to tags
         addDataSource(images); // add data-src and paths
-      
+        images.forEach(image => {observer.observe(image);}) //lazyload
      // when resizing from desktop to mobile, switch view when isMobile
      let isMobileFlag = true;
      let notMobileFlag =true
@@ -73,14 +73,13 @@ if (document.body.classList == "mansory-grid"){
 }
 
 
-
 });  
 
 
 // ***** Lazyloading images ***** ///
 
 let options = {
-    threshold: 0
+    threshold: 1
     }
 
 const observer = new IntersectionObserver(imageObserver, options);
@@ -190,7 +189,6 @@ function viewOptions(){//make option clicked selected
                 filterHorizontalImages(imgNodes).forEach (e => {
                     console.log("filter horizontal images");
                     listNodes.appendChild(e); 
-                    images.forEach(image => {observer.observe(image);}) //lazyload
 
                 });
                 
@@ -209,7 +207,6 @@ function viewOptions(){//make option clicked selected
                 filterVerticalImages(imgNodes).forEach (e => {
                     console.log("filter vertical images");
                     listNodes.appendChild(e); 
-                    images.forEach(image => {observer.observe(image);}) //lazyload
                 }); 
                 
                 // console.log(slides);
